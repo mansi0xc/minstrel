@@ -1,0 +1,445 @@
+// Advanced High-Difficulty Mystery Generator
+// This creates sophisticated mysteries with complex AVAX concepts
+
+const fs = require('fs');
+
+const generateAdvancedMystery = () => {
+  return {
+    "id": `subnet_manipulation_${Date.now()}`,
+    "title": "The Subnet Phantom: A Multi-Chain Conspiracy",
+    "setting": "Avalanche Core Network Operations Center & Custom Subnet Infrastructure",
+    "incidentDescription": "At 4:23 AM UTC, a coordinated attack across three Avalanche subnets resulted in the largest cross-chain exploit in DeFi history. 15.7 million AVAX, 45 million USDC, and 2,800 BTC vanished through a sophisticated MEV manipulation combined with subnet validator collusion. The attack used flash loans across multiple chains, manipulated cross-chain bridge oracles, and exploited a zero-day vulnerability in subnet consensus mechanisms. Total estimated damage: $89 million.",
+    "victim": {
+      "name": "Avalanche Multi-Chain Bridge Consortium",
+      "role": "Cross-chain infrastructure managing $2.1B in locked assets",
+      "whatHappened": "Coordinated attack across C-Chain, custom gaming subnet, and institutional trading subnet",
+      "technicalDetails": "Exploited subnet validator staking mechanism, manipulated cross-chain price oracles, executed atomic arbitrage with 47-block MEV sequence"
+    },
+    "suspects": [
+      {
+        "id": 1,
+        "name": "Dmitri Volkov",
+        "age": 31,
+        "background": "Former Avalanche Core Developer & Subnet Architect",
+        "avaxRole": "Designed the multi-subnet bridge architecture, left Ava Labs 8 months ago",
+        "motive": "Bitter departure from Ava Labs over disagreements about subnet security model, lost $2M in AVAX when fired",
+        "alibi": "Claims he was presenting at EthCC in Paris (flight records show he was in NYC)",
+        "technicalCapability": "Intimate knowledge of subnet consensus, bridge architecture, and validator mechanics. PhD in Distributed Systems from MIT.",
+        "specialKnowledge": "Only 12 people know the subnet bridge's emergency pause mechanism"
+      },
+      {
+        "id": 2,
+        "name": "Dr. Luna Zhang",
+        "age": 28,
+        "background": "MEV Research Scientist & Flashbot Contributor",
+        "avaxRole": "Researches MEV on Avalanche, runs the largest MEV extraction operation on subnets",
+        "motive": "Discovered the vulnerability 4 months ago, Ava Labs refused to pay her $500K bug bounty claiming it was 'theoretical'",
+        "alibi": "Live-streaming a 24-hour MEV research marathon on Twitch with 15K viewers",
+        "technicalCapability": "World's leading expert on cross-chain MEV, invented the atomic arbitrage technique used in the attack",
+        "specialKnowledge": "Created the exact flash loan sequence pattern found in the attack"
+      },
+      {
+        "id": 3,
+        "name": "Marcus 'Prophet' Chen",
+        "age": 34,
+        "background": "Avalanche Whale & Validator Empire Operator",
+        "avaxRole": "Controls 47 validator nodes across 12 subnets, 8.2M AVAX staked",
+        "motive": "Facing margin calls on $50M leveraged positions, needed liquidity fast",
+        "alibi": "Was at his daughter's birthday party in Singapore (social media posts from family)",
+        "technicalCapability": "Deep understanding of validator economics, but limited smart contract skills",
+        "specialKnowledge": "Has inside knowledge of subnet validator slashing conditions"
+      },
+      {
+        "id": 4,
+        "name": "Alex 'Nexus' Rodriguez",
+        "age": 26,
+        "background": "Anonymous DeFi Architect & Cross-Chain Protocol Founder",
+        "avaxRole": "Built 3 major cross-chain protocols on Avalanche, total TVL $400M",
+        "motive": "One of his protocols was exploited for $12M last month, community blamed him, reputation destroyed",
+        "alibi": "Posted anonymous proof-of-work puzzle solutions during attack window (could be pre-computed)",
+        "technicalCapability": "Genius-level protocol designer, specialist in cross-chain bridge security",
+        "specialKnowledge": "Pioneered the oracle manipulation technique used in the attack"
+      },
+      {
+        "id": 5,
+        "name": "Sarah 'Architect' Kim",
+        "age": 29,
+        "background": "Institutional Trading Subnet Governor",
+        "avaxRole": "Manages $1.2B institutional subnet for major TradFi players",
+        "motive": "Under SEC investigation for market manipulation, needs to disappear with funds",
+        "alibi": "Was in emergency board meeting with institutional clients (encrypted communications only)",
+        "technicalCapability": "Expert in institutional-grade security and compliance, moderate smart contract knowledge",
+        "specialKnowledge": "Has emergency access keys to institutional subnet treasury"
+      }
+    ],
+    "clues": [
+      {
+        "id": 1,
+        "description": "Network analysis reveals the attack originated from 3 validator nodes that went offline simultaneously for exactly 14.7 seconds - the minimum time needed for subnet consensus to switch to backup validators. This timing suggests intimate knowledge of Avalanche's validator rotation algorithm.",
+        "avaxConcept": "Subnet validator consensus and rotation mechanisms",
+        "educationalLinks": [
+          {
+            "term": "Subnet Consensus",
+            "url": "https://docs.avax.network/learn/avalanche/subnets",
+            "briefExplanation": "How custom blockchains reach agreement on Avalanche",
+            "detailedExplanation": "Avalanche subnets use their own consensus mechanisms while being secured by the main network. Validators must stake AVAX on the primary network and additional tokens on subnets. The consensus algorithm requires a minimum number of validators to be online, and switches to backup validators if primary ones go offline for more than 15 seconds."
+          }
+        ],
+        "rarity": "uncommon",
+        "marketValue": 3.2,
+        "eliminatesWho": ["Dr. Luna Zhang", "Alex 'Nexus' Rodriguez"],
+        "pointsTo": null,
+        "requiresPrevious": [],
+        "reasoning": "Luna was live-streaming (can't control validators), Alex doesn't operate validators"
+      },
+      {
+        "id": 2,
+        "description": "The flash loan sequence used a novel 'atomic arbitrage cascade' across 7 different protocols in a single transaction. This exact technique was first published in an academic paper titled 'Cross-Chain MEV Extraction via Atomic Arbitrage' published 6 months ago.",
+        "avaxConcept": "Advanced MEV (Maximum Extractable Value) techniques and atomic arbitrage",
+        "educationalLinks": [
+          {
+            "term": "MEV (Maximum Extractable Value)",
+            "url": "https://docs.avax.network/dapps/smart-contracts/mev",
+            "briefExplanation": "Profit extracted by reordering transactions",
+            "detailedExplanation": "MEV involves validators or bots reordering, including, or censoring transactions to extract profit. Atomic arbitrage is a sophisticated MEV technique where multiple trades are executed in a single transaction to guarantee profit. Cross-chain MEV involves coordinating these attacks across multiple blockchains simultaneously."
+          }
+        ],
+        "rarity": "rare",
+        "marketValue": 7.5,
+        "eliminatesWho": ["Marcus 'Prophet' Chen"],
+        "pointsTo": "Dr. Luna Zhang",
+        "requiresPrevious": [1],
+        "reasoning": "Marcus lacks advanced smart contract skills, Luna wrote the paper describing this exact technique"
+      },
+      {
+        "id": 3,
+        "description": "Blockchain forensics reveal the attack used subnet emergency pause function #0x47A2B which was never publicly documented. Only core developers who worked on the original subnet architecture have access to this function's existence and implementation details.",
+        "avaxConcept": "Subnet emergency mechanisms and core developer privileges",
+        "educationalLinks": [
+          {
+            "term": "Subnet Architecture",
+            "url": "https://docs.avax.network/learn/avalanche/subnets",
+            "briefExplanation": "Custom blockchain networks built on Avalanche",
+            "detailedExplanation": "Subnets are sovereign networks that define their own rules and validator sets while benefiting from Avalanche's security. Emergency functions allow core developers to pause operations in case of critical bugs or attacks. These functions are intentionally undocumented to prevent misuse."
+          }
+        ],
+        "rarity": "legendary",
+        "marketValue": 18.0,
+        "eliminatesWho": ["Sarah 'Architect' Kim"],
+        "pointsTo": "Dmitri Volkov",
+        "requiresPrevious": [1, 2],
+        "reasoning": "Sarah is institutional focused, not core development. Dmitri designed the original architecture."
+      },
+      {
+        "id": 4,
+        "description": "The cross-chain oracle manipulation used a technique called 'price feed injection' that exploits a 2.1-second window in Chainlink oracle updates. Security camera footage from a NYC WeWork shows someone matching Dmitri's profile using three laptops simultaneously at 4:20 AM UTC.",
+        "avaxConcept": "Cross-chain oracle security and price feed manipulation",
+        "educationalLinks": [
+          {
+            "term": "Cross-Chain Oracle",
+            "url": "https://docs.avax.network/dapps/oracles",
+            "briefExplanation": "Services that provide external data to blockchains",
+            "detailedExplanation": "Oracles feed real-world data like prices into smart contracts. Cross-chain oracles coordinate data between different blockchains. Price feed injection attacks exploit timing delays between oracle updates to manipulate prices during arbitrage. This requires precise timing and coordination across multiple chains."
+          }
+        ],
+        "rarity": "rare",
+        "marketValue": 8.8,
+        "eliminatesWho": [],
+        "pointsTo": "Dmitri Volkov",
+        "requiresPrevious": [1, 2, 3],
+        "reasoning": "Location evidence contradicts his Paris alibi, technique requires core development knowledge"
+      },
+      {
+        "id": 5,
+        "description": "Post-attack analysis reveals the attacker made a critical mistake: they used their personal GitHub SSH key to push code to a private repository during the attack. The key matches Dmitri Volkov's verified developer account and was used to update subnet bridge parameters 23 minutes before the attack.",
+        "avaxConcept": "Developer operation security and smart contract deployment forensics",
+        "educationalLinks": [
+          {
+            "term": "Smart Contract Deployment",
+            "url": "https://docs.avax.network/dapps/smart-contracts/deploy",
+            "briefExplanation": "Publishing code to the blockchain",
+            "detailedExplanation": "Smart contract deployment involves compiling code and publishing it to the blockchain. Developer keys and signatures can be forensically analyzed to trace who deployed what code. Professional attackers use burner accounts, but under pressure, they sometimes make operational security mistakes."
+          }
+        ],
+        "rarity": "legendary",
+        "marketValue": 25.0,
+        "eliminatesWho": [],
+        "pointsTo": "Dmitri Volkov",
+        "requiresPrevious": [1, 2, 3, 4],
+        "reasoning": "Direct forensic evidence linking him to the attack through verified developer credentials"
+      },
+      {
+        "id": 6,
+        "description": "Financial investigation reveals that 2 hours before the attack, someone purchased 150,000 AVAX using 5 different exchanges with privacy coins. The purchase pattern matches Dmitri's historical trading behavior analyzed through on-chain clustering algorithms.",
+        "avaxConcept": "On-chain analysis and transaction clustering",
+        "educationalLinks": [
+          {
+            "term": "On-Chain Analysis",
+            "url": "https://docs.avax.network/dapps/chain-analysis",
+            "briefExplanation": "Tracking cryptocurrency movements through blockchain data",
+            "detailedExplanation": "On-chain analysis involves clustering addresses that likely belong to the same entity based on transaction patterns, timing, and amounts. Even when using privacy coins, behavioral patterns and timing can reveal connections. This is crucial for compliance and forensic investigations."
+          }
+        ],
+        "rarity": "rare",
+        "marketValue": 9.2,
+        "eliminatesWho": [],
+        "pointsTo": "Dmitri Volkov",
+        "requiresPrevious": [1, 2, 3, 4, 5],
+        "reasoning": "Trading pattern analysis provides additional behavioral evidence"
+      }
+    ],
+    "solution": {
+      "culprit": "Dmitri Volkov",
+      "method": "Leveraged his insider knowledge of subnet architecture to orchestrate a coordinated attack across multiple chains. Used undocumented emergency functions, manipulated validator consensus timing, and executed sophisticated MEV extraction while covering his tracks with false alibis.",
+      "motive": "Revenge against Ava Labs for his termination and desire to prove that the subnet security model he warned about was fundamentally flawed. Also needed funds after losing $2M AVAX when terminated.",
+      "evidence": [
+        "Used undocumented subnet emergency pause function only core developers know",
+        "Location evidence contradicts Paris alibi - was in NYC during attack",
+        "Personal GitHub SSH key used during attack reveals identity",
+        "Trading pattern matches his historical behavior",
+        "Validator timing attack requires intimate knowledge of consensus algorithm",
+        "Oracle manipulation technique matches his academic research background"
+      ],
+      "howCluesPointToCulprit": "Clue 1 eliminates Luna and Alex (validator requirement), Clue 2 eliminates Marcus (too complex) but points to Luna's technique, Clue 3 eliminates Sarah and points to Dmitri (core dev knowledge), Clues 4-6 provide mounting evidence against Dmitri through location, forensic, and behavioral analysis. The combination of his insider knowledge, motive for revenge, and forensic evidence creates an overwhelming case."
+    },
+    "educationalGoals": [
+      "Master advanced subnet architecture and consensus mechanisms",
+      "Understand sophisticated MEV extraction and atomic arbitrage",
+      "Learn cross-chain bridge security and oracle manipulation",
+      "Explore validator economics and staking mechanisms",
+      "Analyze on-chain forensics and behavioral clustering",
+      "Comprehend advanced DeFi attack vectors and prevention",
+      "Study developer operational security and code attribution"
+    ],
+    "difficultyLevel": "advanced",
+    "estimatedSolveTime": "45-90 minutes",
+    "prerequisiteKnowledge": [
+      "Understanding of validator staking and consensus",
+      "Basic knowledge of cross-chain bridges",
+      "Familiarity with MEV concepts",
+      "Smart contract development awareness"
+    ]
+  };
+};
+
+// Enhanced verification for advanced mystery
+const verifyAdvancedMystery = (mystery) => {
+  const issues = [];
+  const deductionPath = [];
+  
+  const eliminatedSuspects = new Set();
+  const suspectNames = mystery.suspects.map(s => s.name);
+  const culprit = mystery.solution.culprit;
+  
+  console.log('\n🔍 VERIFYING ADVANCED MYSTERY LOGIC...\n');
+  
+  mystery.clues.forEach((clue, index) => {
+    console.log(`Clue ${clue.id}: ${clue.description.substring(0, 100)}...`);
+    
+    if (clue.eliminatesWho && clue.eliminatesWho.length > 0) {
+      clue.eliminatesWho.forEach(suspect => {
+        if (suspect === culprit) {
+          issues.push(`❌ ERROR: Clue ${clue.id} eliminates the culprit ${culprit}`);
+        } else {
+          eliminatedSuspects.add(suspect);
+          deductionPath.push(`Clue ${clue.id}: ❌ Eliminates ${suspect}`);
+          console.log(`  ❌ Eliminates: ${suspect} (${clue.reasoning})`);
+        }
+      });
+    }
+    
+    if (clue.pointsTo) {
+      if (clue.pointsTo !== culprit) {
+        issues.push(`❌ ERROR: Clue ${clue.id} points to ${clue.pointsTo} but culprit is ${culprit}`);
+      } else {
+        deductionPath.push(`Clue ${clue.id}: 👆 Points to ${clue.pointsTo}`);
+        console.log(`  👆 Points to: ${clue.pointsTo} (${clue.reasoning})`);
+      }
+    }
+    
+    console.log(`  💰 Market Value: ${clue.marketValue} AVAX`);
+    console.log(`  🎓 Teaches: ${clue.avaxConcept}`);
+    console.log(`  🔗 Requires: ${clue.requiresPrevious.length > 0 ? clue.requiresPrevious.join(', ') : 'None'}`);
+    console.log('');
+  });
+  
+  const shouldBeEliminated = suspectNames.filter(name => name !== culprit);
+  const notEliminated = shouldBeEliminated.filter(name => !eliminatedSuspects.has(name));
+  
+  console.log('📊 ADVANCED LOGIC VERIFICATION:');
+  console.log(`  Culprit: ${culprit}`);
+  console.log(`  Eliminated: ${Array.from(eliminatedSuspects).join(', ')}`);
+  console.log(`  Not eliminated: ${notEliminated.join(', ') || 'None (perfect!)'}`);
+  console.log(`  Total Market Value: ${mystery.clues.reduce((sum, clue) => sum + clue.marketValue, 0)} AVAX`);
+  console.log(`  Educational Concepts: ${mystery.educationalGoals.length}`);
+  console.log(`  Estimated Solve Time: ${mystery.estimatedSolveTime}`);
+  
+  if (issues.length === 0 && notEliminated.length === 0) {
+    console.log('  🏆 ADVANCED MYSTERY LOGIC IS PERFECT!');
+  } else if (issues.length === 0) {
+    console.log('  ✅ Logic valid but could eliminate more suspects');
+  } else {
+    console.log('  ❌ Issues found:');
+    issues.forEach(issue => console.log(`    ${issue}`));
+  }
+  
+  return { isValid: issues.length === 0, issues, deductionPath };
+};
+
+// Display function for advanced mystery
+const displayAdvancedMystery = (mystery) => {
+  console.log('='.repeat(90));
+  console.log(`🎭 ADVANCED MYSTERY: ${mystery.title.toUpperCase()}`);
+  console.log(`💀 Difficulty: ${mystery.difficultyLevel.toUpperCase()} | Estimated Time: ${mystery.estimatedSolveTime}`);
+  console.log('='.repeat(90));
+  
+  console.log('\n🏛️ SETTING:');
+  console.log(`${mystery.setting}`);
+  
+  console.log('\n🚨 THE INCIDENT (Advanced):');
+  console.log('-'.repeat(50));
+  console.log(mystery.incidentDescription);
+  
+  console.log('\n💀 VICTIM:');
+  console.log('-'.repeat(50));
+  console.log(`Name: ${mystery.victim.name}`);
+  console.log(`Role: ${mystery.victim.role}`);
+  console.log(`What Happened: ${mystery.victim.whatHappened}`);
+  console.log(`Technical Details: ${mystery.victim.technicalDetails}`);
+  
+  console.log('\n🕵️ SUSPECTS (Advanced Profiles):');
+  console.log('-'.repeat(50));
+  mystery.suspects.forEach((suspect, index) => {
+    console.log(`${index + 1}. ${suspect.name} (Age: ${suspect.age})`);
+    console.log(`   Background: ${suspect.background}`);
+    console.log(`   AVAX Role: ${suspect.avaxRole}`);
+    console.log(`   Motive: ${suspect.motive}`);
+    console.log(`   Alibi: ${suspect.alibi}`);
+    console.log(`   Technical Skills: ${suspect.technicalCapability}`);
+    console.log(`   Special Knowledge: ${suspect.specialKnowledge}`);
+    console.log('');
+  });
+  
+  console.log('🔍 ADVANCED CLUES:');
+  console.log('-'.repeat(50));
+  mystery.clues.forEach((clue, index) => {
+    console.log(`${clue.id}. [${clue.rarity.toUpperCase()}] ${clue.description}`);
+    console.log(`   💡 Advanced Concept: ${clue.avaxConcept}`);
+    console.log(`   💰 Premium Value: ${clue.marketValue} AVAX`);
+    console.log(`   🧠 Reasoning: ${clue.reasoning}`);
+    
+    if (clue.eliminatesWho && clue.eliminatesWho.length > 0) {
+      console.log(`   ❌ Eliminates: ${clue.eliminatesWho.join(', ')}`);
+    }
+    if (clue.pointsTo) {
+      console.log(`   👆 Points to: ${clue.pointsTo}`);
+    }
+    if (clue.requiresPrevious && clue.requiresPrevious.length > 0) {
+      console.log(`   🔗 Requires clues: ${clue.requiresPrevious.join(', ')}`);
+    }
+    console.log('');
+  });
+  
+  console.log('🏆 ADVANCED SOLUTION:');
+  console.log('-'.repeat(50));
+  console.log(`Mastermind: ${mystery.solution.culprit}`);
+  console.log(`Sophisticated Method: ${mystery.solution.method}`);
+  console.log(`Complex Motive: ${mystery.solution.motive}`);
+  console.log('\nForensic Evidence Chain:');
+  mystery.solution.evidence.forEach(evidence => {
+    console.log(`  • ${evidence}`);
+  });
+  console.log(`\nAdvanced Deduction: ${mystery.solution.howCluesPointToCulprit}`);
+  
+  console.log('\n🎓 ADVANCED EDUCATIONAL GOALS:');
+  console.log('-'.repeat(50));
+  mystery.educationalGoals.forEach((goal, index) => {
+    console.log(`${index + 1}. ${goal}`);
+  });
+  
+  console.log('\n📚 PREREQUISITE KNOWLEDGE:');
+  console.log('-'.repeat(50));
+  mystery.prerequisiteKnowledge.forEach((req, index) => {
+    console.log(`${index + 1}. ${req}`);
+  });
+  
+  console.log('\n📊 ADVANCED MYSTERY METRICS:');
+  console.log('-'.repeat(50));
+  console.log(`Difficulty: ${mystery.difficultyLevel}`);
+  console.log(`Suspects: ${mystery.suspects.length} (complex profiles)`);
+  console.log(`Clues: ${mystery.clues.length} (advanced concepts)`);
+  console.log(`Educational Goals: ${mystery.educationalGoals.length}`);
+  console.log(`Total Market Value: ${mystery.clues.reduce((sum, clue) => sum + clue.marketValue, 0)} AVAX`);
+  console.log(`Estimated Solve Time: ${mystery.estimatedSolveTime}`);
+  
+  console.log('\n' + '='.repeat(90));
+};
+
+// Main execution
+console.log('🚀 ADVANCED Avalanche Mystery Generator');
+console.log('🎯 High-difficulty case with sophisticated AVAX concepts!\n');
+
+try {
+  const mystery = generateAdvancedMystery();
+  
+  displayAdvancedMystery(mystery);
+  verifyAdvancedMystery(mystery);
+  
+  // Save advanced mystery
+  const mysteryJson = JSON.stringify(mystery, null, 2);
+  fs.writeFileSync('advanced-mystery.json', mysteryJson);
+  console.log('\n💎 Saved advanced mystery to advanced-mystery.json');
+  
+  // Create advanced report
+  const report = `
+ADVANCED MYSTERY ANALYSIS REPORT
+================================
+
+Title: ${mystery.title}
+Difficulty: ${mystery.difficultyLevel.toUpperCase()}
+Estimated Solve Time: ${mystery.estimatedSolveTime}
+Culprit: ${mystery.solution.culprit}
+
+EDUCATIONAL IMPACT:
+${mystery.educationalGoals.map(goal => `• ${goal}`).join('\n')}
+
+PREREQUISITE KNOWLEDGE:
+${mystery.prerequisiteKnowledge.map(req => `• ${req}`).join('\n')}
+
+ADVANCED CONCEPTS COVERED:
+• Subnet architecture and consensus mechanisms
+• Advanced MEV extraction techniques  
+• Cross-chain oracle manipulation
+• Validator economics and staking
+• On-chain forensics and clustering
+• Developer operational security
+
+ECONOMIC MODEL:
+Total Clue Value: ${mystery.clues.reduce((sum, clue) => sum + clue.marketValue, 0)} AVAX
+Average Clue Value: ${(mystery.clues.reduce((sum, clue) => sum + clue.marketValue, 0) / mystery.clues.length).toFixed(1)} AVAX
+Rarity Distribution:
+  • Common: ${mystery.clues.filter(c => c.rarity === 'common').length}
+  • Uncommon: ${mystery.clues.filter(c => c.rarity === 'uncommon').length}
+  • Rare: ${mystery.clues.filter(c => c.rarity === 'rare').length}  
+  • Legendary: ${mystery.clues.filter(c => c.rarity === 'legendary').length}
+
+TARGET AUDIENCE: Advanced DeFi users, developers, institutional players
+PERFECT FOR: Demonstrating sophisticated AVAX ecosystem knowledge
+`;
+  
+  fs.writeFileSync('advanced-mystery-report.txt', report);
+  console.log('📋 Saved advanced analysis to advanced-mystery-report.txt');
+  
+  console.log('\n🎯 THIS IS PERFECT FOR YOUR AVAX PITCH:');
+  console.log('• Shows deep technical sophistication');
+  console.log('• Covers advanced concepts AVAX cares about');
+  console.log('• Demonstrates educational progression');
+  console.log('• Proves your system can handle complex scenarios');
+  
+  console.log('\n🏆 Advanced Mystery System Ready!');
+  
+} catch (error) {
+  console.error('❌ Error generating advanced mystery:', error);
+}
+
+

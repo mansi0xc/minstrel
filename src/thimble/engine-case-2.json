@@ -1,0 +1,124 @@
+{
+	"generatedAt": "2025-09-13T13:15:26.113Z",
+	"engine": "Gemini (via src/functions/generate.ts)",
+	"theme": "governance_manipulation",
+	"difficulty": "advanced",
+	"case": {
+		"id": "DAO-Voting-Mystery-1",
+		"title": "The Case of the Crooked Consensus",
+		"shortDescription": "A controversial DAO governance proposal regarding a major protocol upgrade shows highly suspicious voting patterns, suggesting manipulation.  The upgrade would significantly impact token value.",
+		"victim": {
+			"name": "Aavegotchi DAO",
+			"age": 3,
+			"background": "Decentralized Autonomous Organization governing the Aavegotchi metaverse",
+			"avaxRole": "Governance of Aavegotchi protocol and treasury"
+		},
+		"suspects": [
+			{
+				"id": 1,
+				"name": "KrakenWhale",
+				"age": 30,
+				"background": "A large Aavegotchi token holder with a history of market manipulation in other DAOs",
+				"possibleMotive": "Profiting from price manipulation after upgrade announcement",
+				"avaxConnection": "Major GHST token holder",
+				"educationalLinks": []
+			},
+			{
+				"id": 2,
+				"name": "PixelPusher",
+				"age": 25,
+				"background": "The author of the controversial governance proposal, a known proponent of radical protocol changes",
+				"possibleMotive": "Personal gain through a backdoor deal with a competing protocol",
+				"avaxConnection": "Aavegotchi core developer, significant influence on DAO decisions",
+				"educationalLinks": []
+			},
+			{
+				"id": 3,
+				"name": "RivalRealm",
+				"age": 2,
+				"background": "A competing metaverse protocol aiming to disrupt Aavegotchi's market dominance",
+				"possibleMotive": "Undermining Aavegotchi through sabotage, causing instability and driving users to their platform",
+				"avaxConnection": "Competitor in the same metaverse niche, actively attracting Aavegotchi users",
+				"educationalLinks": []
+			},
+			{
+				"id": 4,
+				"name": "FlashTrader",
+				"age": 28,
+				"background": "A known insider trader with access to sensitive information concerning Aavegotchi protocol upgrades",
+				"possibleMotive": "Profiting from advance knowledge of the upgrade's impact on token price",
+				"avaxConnection": "Works at a firm that provides liquidity to Aavegotchi's DeFi contracts",
+				"educationalLinks": [
+					{
+						"term": "DeFi (Decentralized Finance)",
+						"url": "https://docs.avax.network/learn/avalanche/avalanche-consensus",
+						"briefExplanation": "Financial services without banks. Like having a bank that runs automatically without human managers."
+					}
+				]
+			}
+		],
+		"clues": [
+			{
+				"id": 1,
+				"description": "An unusually high number of votes came from addresses known to be associated with KrakenWhale, all cast just before the voting deadline.",
+				"avaxConcept": "Governance token voting",
+				"educationalLinks": [],
+				"difficulty": "easy"
+			},
+			{
+				"id": 2,
+				"description": "Analysis of on-chain transactions reveals PixelPusher received a significant amount of GHST tokens from an unknown wallet just before the proposal launch.",
+				"avaxConcept": "On-chain transaction analysis",
+				"educationalLinks": [],
+				"difficulty": "medium"
+			},
+			{
+				"id": 3,
+				"description": "Blockchain forensics shows a large transfer of GHST tokens from accounts linked to RivalRealm, to a series of newly created accounts that then voted against the upgrade.",
+				"avaxConcept": "Smart contract analysis, blockchain forensics",
+				"educationalLinks": [
+					{
+						"term": "Smart Contract",
+						"url": "https://docs.avax.network/learn/avalanche/smart-contracts",
+						"briefExplanation": "Self-executing contracts with terms written in code. Like a digital vending machine - you put money in, get the product out automatically."
+					}
+				],
+				"difficulty": "hard"
+			},
+			{
+				"id": 4,
+				"description": "FlashTrader's trading history shows suspiciously high-volume GHST trades before and immediately after the voting outcome, indicating insider knowledge of the result.",
+				"avaxConcept": "Trading volume analysis, insider trading detection",
+				"educationalLinks": [],
+				"difficulty": "hard"
+			},
+			{
+				"id": 5,
+				"description": "A hidden message within PixelPusher's proposal code, discovered only through advanced decompilation, reveals a coded message linking to RivalRealm's servers.",
+				"avaxConcept": "Smart contract decompilation, code analysis",
+				"educationalLinks": [
+					{
+						"term": "Smart Contract",
+						"url": "https://docs.avax.network/learn/avalanche/smart-contracts",
+						"briefExplanation": "Self-executing contracts with terms written in code. Like a digital vending machine - you put money in, get the product out automatically."
+					}
+				],
+				"difficulty": "hard"
+			}
+		],
+		"solution": {
+			"culprit": "PixelPusher",
+			"motive": "Personal gain through a secret agreement with RivalRealm",
+			"explanation": "While KrakenWhale, RivalRealm, and FlashTrader all exhibited suspicious activity, the combination of the hidden message in the proposal code (Clue 5), the unexplained GHST transfer to PixelPusher before proposal launch (Clue 2), and the high degree of influence PixelPusher held within the DAO conclusively points to him as the culprit. He sabotaged the proposal to benefit RivalRealm, receiving funds in exchange for undermining Aavegotchi's development."
+		},
+		"educationalGoals": [
+			"Understanding DAO governance mechanisms",
+			"Analyzing on-chain data for detecting malicious activity",
+			"Identifying patterns of market manipulation",
+			"Applying blockchain forensics techniques"
+		],
+		"difficultyLevel": "advanced"
+	},
+	"raw": "(omitted in snapshot)",
+	"promptUsed": "(omitted in snapshot)"
+}

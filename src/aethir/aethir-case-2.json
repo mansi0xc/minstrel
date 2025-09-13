@@ -1,0 +1,153 @@
+{
+  "generatedAt": "2025-09-13T13:42:49.276Z",
+  "engine": "Gemini (via src/functions/generate.ts)",
+  "theme": "bridge_exploit",
+  "difficulty": "advanced",
+  "case": {
+    "id": "avax-bridge-heist",
+    "title": "The Case of the Missing Wrapped AVAX",
+    "shortDescription": "100,000 wAVAX vanishes during a cross-chain bridge operation from Avalanche to Ethereum.  The bridge operator, a white-hat hacker, a disgruntled employee, and a competitor protocol are all suspects.",
+    "victim": {
+      "name": "Avalanche Bridge Inc.",
+      "age": 5,
+      "background": "A leading cross-chain bridge operator on the Avalanche network.",
+      "avaxRole": "Bridge Operator"
+    },
+    "suspects": [
+      {
+        "id": 1,
+        "name": "Boris Petrov",
+        "age": 38,
+        "background": "Lead developer for Avalanche Bridge Inc., recently fired for suspected negligence.",
+        "possibleMotive": "Revenge for wrongful termination; access to bridge code.",
+        "avaxConnection": "Former employee with deep technical knowledge of the bridge.",
+        "educationalLinks": [
+          {
+            "term": "Bridge",
+            "url": "https://docs.avax.network/cross-chain",
+            "briefExplanation": "Connects different blockchains. Like a bridge that lets you move assets between different digital countries."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Anya Sharma",
+        "age": 27,
+        "background": "Renowned white-hat hacker known for ethically exposing vulnerabilities.",
+        "possibleMotive": "Financial gain; exploit a previously unknown bridge vulnerability.",
+        "avaxConnection": "Known to audit various DeFi protocols, including competing bridges.",
+        "educationalLinks": [
+          {
+            "term": "DeFi (Decentralized Finance)",
+            "url": "https://docs.avax.network/learn/avalanche/avalanche-consensus",
+            "briefExplanation": "Financial services without banks. Like having a bank that runs automatically without human managers."
+          },
+          {
+            "term": "Bridge",
+            "url": "https://docs.avax.network/cross-chain",
+            "briefExplanation": "Connects different blockchains. Like a bridge that lets you move assets between different digital countries."
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "BridgeCorp",
+        "age": 2,
+        "background": "A competing cross-chain bridge protocol.",
+        "possibleMotive": "Competitive sabotage; discredit Avalanche Bridge Inc.",
+        "avaxConnection": "Direct competitor aiming to gain market share.",
+        "educationalLinks": [
+          {
+            "term": "Bridge",
+            "url": "https://docs.avax.network/cross-chain",
+            "briefExplanation": "Connects different blockchains. Like a bridge that lets you move assets between different digital countries."
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Dmitri Volkov",
+        "age": 45,
+        "background": "CEO of Avalanche Bridge Inc., with access to all bridge accounts.",
+        "possibleMotive": "Insider trading; using funds for personal gain.",
+        "avaxConnection": "CEO and owner of the bridge, with ultimate authority.",
+        "educationalLinks": [
+          {
+            "term": "Bridge",
+            "url": "https://docs.avax.network/cross-chain",
+            "briefExplanation": "Connects different blockchains. Like a bridge that lets you move assets between different digital countries."
+          }
+        ]
+      }
+    ],
+    "clues": [
+      {
+        "id": 1,
+        "description": "Unusual network traffic originating from an internal IP address was detected just before the funds disappeared. This IP address was previously associated with Boris Petrov.",
+        "avaxConcept": "Network Security",
+        "educationalLinks": [],
+        "difficulty": "easy"
+      },
+      {
+        "id": 2,
+        "description": "Analysis of the bridge's smart contract reveals a subtle, previously undocumented vulnerability related to the minting of wAVAX, exploitable through a specific sequence of transactions.",
+        "avaxConcept": "Smart Contract Security",
+        "educationalLinks": [
+          {
+            "term": "Smart Contract",
+            "url": "https://docs.avax.network/learn/avalanche/smart-contracts",
+            "briefExplanation": "Self-executing contracts with terms written in code. Like a digital vending machine - you put money in, get the product out automatically."
+          },
+          {
+            "term": "Bridge",
+            "url": "https://docs.avax.network/cross-chain",
+            "briefExplanation": "Connects different blockchains. Like a bridge that lets you move assets between different digital countries."
+          }
+        ],
+        "difficulty": "medium"
+      },
+      {
+        "id": 3,
+        "description": "Anya Sharma's public key was identified in a minor, seemingly unrelated transaction on the Ethereum blockchain, hours after the wAVAX disappeared.  Further investigation reveals this transaction was used to launder the stolen funds.",
+        "avaxConcept": "Wrapped Tokens, Transaction Tracing",
+        "educationalLinks": [],
+        "difficulty": "hard"
+      },
+      {
+        "id": 4,
+        "description": "Dmitri Volkov's private key was not used in the operation; log files show he was out of the office during the theft, corroborated by security footage.",
+        "avaxConcept": "Private Keys, Access Controls",
+        "educationalLinks": [],
+        "difficulty": "medium"
+      },
+      {
+        "id": 5,
+        "description": "BridgeCorp had no access to Avalanche Bridge Inc.'s internal systems.",
+        "avaxConcept": "Network Segmentation, Access Control",
+        "educationalLinks": [
+          {
+            "term": "Bridge",
+            "url": "https://docs.avax.network/cross-chain",
+            "briefExplanation": "Connects different blockchains. Like a bridge that lets you move assets between different digital countries."
+          }
+        ],
+        "difficulty": "easy"
+      }
+    ],
+    "solution": {
+      "culprit": "Boris Petrov",
+      "motive": "Revenge for wrongful termination and financial gain.",
+      "explanation": "Boris Petrov leveraged his intimate knowledge of the bridge's code and internal systems to exploit the vulnerability discovered in clue 2.  Clue 1 establishes his IP address as the source of malicious activity.  While Anya Sharma laundered the funds, this was only after receiving them from Boris."
+    },
+    "educationalGoals": [
+      "Understanding cross-chain bridge mechanics.",
+      "Recognizing vulnerabilities in smart contracts.",
+      "Importance of secure coding practices and access control.",
+      "The use of wrapped tokens and cross-chain security vulnerabilities.",
+      "The importance of thorough background checks and employee management."
+    ],
+    "difficultyLevel": "advanced"
+  },
+  "raw": "```json\n{\n  \"id\": \"avax-bridge-heist\",\n  \"title\": \"The Case of the Missing Wrapped AVAX\",\n  \"shortDescription\": \"100,000 wAVAX vanishes during a cross-chain bridge operation from Avalanche to Ethereum.  The bridge operator, a white-hat hacker, a disgruntled employee, and a competitor protocol are all suspects.\",\n  \"victim\": {\n    \"name\": \"Avalanche Bridge Inc.\",\n    \"age\": 5,\n    \"background\": \"A leading cross-chain bridge operator on the Avalanche network.\",\n    \"avaxRole\": \"Bridge Operator\"\n  },\n  \"suspects\": [\n    {\n      \"id\": 1,\n      \"name\": \"Boris Petrov\",\n      \"age\": 38,\n      \"background\": \"Lead developer for Avalanche Bridge Inc., recently fired for suspected negligence.\",\n      \"possibleMotive\": \"Revenge for wrongful termination; access to bridge code.\",\n      \"avaxConnection\": \"Former employee with deep technical knowledge of the bridge.\"\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Anya Sharma\",\n      \"age\": 27,\n      \"background\": \"Renowned white-hat hacker known for ethically exposing vulnerabilities.\",\n      \"possibleMotive\": \"Financial gain; exploit a previously unknown bridge vulnerability.\",\n      \"avaxConnection\": \"Known to audit various DeFi protocols, including competing bridges.\"\n    },\n    {\n      \"id\": 3,\n      \"name\": \"BridgeCorp\",\n      \"age\": 2,\n      \"background\": \"A competing cross-chain bridge protocol.\",\n      \"possibleMotive\": \"Competitive sabotage; discredit Avalanche Bridge Inc.\",\n      \"avaxConnection\": \"Direct competitor aiming to gain market share.\"\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Dmitri Volkov\",\n      \"age\": 45,\n      \"background\": \"CEO of Avalanche Bridge Inc., with access to all bridge accounts.\",\n      \"possibleMotive\": \"Insider trading; using funds for personal gain.\",\n      \"avaxConnection\": \"CEO and owner of the bridge, with ultimate authority.\"\n    }\n  ],\n  \"clues\": [\n    {\n      \"id\": 1,\n      \"description\": \"Unusual network traffic originating from an internal IP address was detected just before the funds disappeared. This IP address was previously associated with Boris Petrov.\",\n      \"avaxConcept\": \"Network Security\",\n      \"difficulty\": \"easy\"\n    },\n    {\n      \"id\": 2,\n      \"description\": \"Analysis of the bridge's smart contract reveals a subtle, previously undocumented vulnerability related to the minting of wAVAX, exploitable through a specific sequence of transactions.\",\n      \"avaxConcept\": \"Smart Contract Security\",\n      \"difficulty\": \"medium\"\n    },\n    {\n      \"id\": 3,\n      \"description\": \"Anya Sharma's public key was identified in a minor, seemingly unrelated transaction on the Ethereum blockchain, hours after the wAVAX disappeared.  Further investigation reveals this transaction was used to launder the stolen funds.\",\n      \"avaxConcept\": \"Wrapped Tokens, Transaction Tracing\",\n      \"difficulty\": \"hard\"\n    },\n    {\n      \"id\": 4,\n      \"description\": \"Dmitri Volkov's private key was not used in the operation; log files show he was out of the office during the theft, corroborated by security footage.\",\n      \"avaxConcept\": \"Private Keys, Access Controls\",\n      \"difficulty\": \"medium\"\n    },\n    {\n      \"id\": 5,\n      \"description\": \"BridgeCorp had no access to Avalanche Bridge Inc.'s internal systems.\",\n      \"avaxConcept\": \"Network Segmentation, Access Control\",\n      \"difficulty\": \"easy\"\n    }\n  ],\n  \"solution\": {\n    \"culprit\": \"Boris Petrov\",\n    \"motive\": \"Revenge for wrongful termination and financial gain.\",\n    \"explanation\": \"Boris Petrov leveraged his intimate knowledge of the bridge's code and internal systems to exploit the vulnerability discovered in clue 2.  Clue 1 establishes his IP address as the source of malicious activity.  While Anya Sharma laundered the funds, this was only after receiving them from Boris.\"\n  },\n  \"educationalGoals\": [\n    \"Understanding cross-chain bridge mechanics.\",\n    \"Recognizing vulnerabilities in smart contracts.\",\n    \"Importance of secure coding practices and access control.\",\n    \"The use of wrapped tokens and cross-chain security vulnerabilities.\",\n    \"The importance of thorough background checks and employee management.\"\n  ],\n  \"difficultyLevel\": \"advanced\"\n}\n```\n",
+  "promptUsed": "\nCreate a mystery about missing funds during a cross-chain bridge operation. Include suspects like the bridge operator, a white-hat hacker, a disgruntled employee, and a competitor protocol. Focus on cross-chain security, wrapped tokens, and bridge mechanics.\n\nYou MUST produce a fully coherent case where story, suspects, clues, and solution logically connect. Each clue must help narrow suspects toward the final culprit; each suspect's background and motive must align with the shortDescription and solution.\n\nOutput STRICT JSON only (no markdown, no commentary). Use this exact schema:\n{\n  \"id\": string,\n  \"title\": string,\n  \"shortDescription\": string,\n  \"victim\": { \"name\": string, \"age\": number, \"background\": string, \"avaxRole\": string },\n  \"suspects\": [ { \"id\": number, \"name\": string, \"age\": number, \"background\": string, \"possibleMotive\": string, \"avaxConnection\": string } ],\n  \"clues\": [ { \"id\": number, \"description\": string, \"avaxConcept\": string, \"difficulty\": \"easy\"|\"medium\"|\"hard\" } ],\n  \"solution\": { \"culprit\": string, \"motive\": string, \"explanation\": string },\n  \"educationalGoals\": string[],\n  \"difficultyLevel\": \"beginner\"|\"intermediate\"|\"advanced\"\n}\n\nConstraints:\n- Tailor suspects and clues to the exact incident described.\n- Ensure the culprit is among suspects; clues justify the conclusion.\n- Difficulty is advanced.\n"
+}

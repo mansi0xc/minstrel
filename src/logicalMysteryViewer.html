@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avalanche Mystery Detective - Logical Case Viewer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e8e8e8;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            border: 2px solid #d4af37;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+        }
+
+        .mystery-card {
+            background: rgba(0,0,0,0.4);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #444;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .mystery-title {
+            font-size: 2.2em;
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ff6b6b;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .incident-description {
+            background: rgba(255,107,107,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ff6b6b;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .victim-card {
+            background: rgba(255,107,107,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .suspects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .suspect-card {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #4ecdc4;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .suspect-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(78,205,196,0.3);
+        }
+
+        .suspect-card.eliminated {
+            border-left-color: #888;
+            background: rgba(255,255,255,0.02);
+            opacity: 0.6;
+        }
+
+        .suspect-card.eliminated::after {
+            content: "ELIMINATED";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #888;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .suspect-card.culprit {
+            border-left-color: #ff6b6b;
+            background: rgba(255,107,107,0.1);
+        }
+
+        .suspect-card.culprit::after {
+            content: "CULPRIT";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .suspect-name {
+            font-size: 1.3em;
+            color: #4ecdc4;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .clues-section {
+            margin-bottom: 40px;
+        }
+
+        .clue-card {
+            background: rgba(255,255,255,0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #ffa726;
+            margin-bottom: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .clue-card:hover {
+            background: rgba(255,255,255,0.08);
+        }
+
+        .clue-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .clue-number {
+            font-size: 1.4em;
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        .clue-rarity {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: auto;
+        }
+
+        .rarity-common { background: #4caf50; color: white; }
+        .rarity-uncommon { background: #2196f3; color: white; }
+        .rarity-rare { background: #9c27b0; color: white; }
+        .rarity-legendary { background: #ff9800; color: white; }
+
+        .clue-description {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .clue-analysis {
+            background: rgba(212,175,55,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #d4af37;
+            margin-top: 15px;
+        }
+
+        .clue-eliminates, .clue-points-to {
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .clue-eliminates {
+            background: rgba(136,136,136,0.2);
+            border-left: 3px solid #888;
+            color: #ccc;
+        }
+
+        .clue-points-to {
+            background: rgba(255,107,107,0.2);
+            border-left: 3px solid #ff6b6b;
+            color: #ff6b6b;
+        }
+
+        .educational-links {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(212,175,55,0.1);
+            border-radius: 8px;
+            border-left: 3px solid #d4af37;
+        }
+
+        .educational-links h4 {
+            color: #d4af37;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .edu-link {
+            display: block;
+            color: #4ecdc4;
+            text-decoration: none;
+            margin: 8px 0;
+            padding: 8px 12px;
+            background: rgba(78,205,196,0.1);
+            border-radius: 6px;
+            border-left: 3px solid #4ecdc4;
+            transition: all 0.3s ease;
+        }
+
+        .edu-link:hover {
+            background: rgba(78,205,196,0.2);
+            transform: translateX(5px);
+        }
+
+        .edu-link-title {
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .edu-link-brief {
+            font-size: 0.9em;
+            color: #b8b8b8;
+            margin-top: 4px;
+        }
+
+        .solution-card {
+            background: rgba(76,175,80,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #4caf50;
+            margin-top: 30px;
+        }
+
+        .deduction-chain {
+            background: rgba(212,175,55,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #d4af37;
+            margin: 20px 0;
+        }
+
+        .deduction-step {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 5px;
+        }
+
+        .toggle-solution {
+            background: linear-gradient(45deg, #d4af37, #ffd700);
+            color: #1a1a2e;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .toggle-solution:hover {
+            transform: scale(1.05);
+        }
+
+        .hidden { display: none; }
+
+        .reveal-clue-btn {
+            background: rgba(255,167,38,0.8);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .reveal-clue-btn:hover {
+            background: rgba(255,167,38,1);
+        }
+
+        .market-value {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #d4af37;
+            color: #1a1a2e;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .suspects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🕵️ Avalanche Mystery Detective</h1>
+            <p>Solve crimes while learning Web3 • Each clue teaches you real AVAX concepts</p>
+        </div>
+
+        <div id="mysteryContent">
+            <!-- Mystery content will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+        // The logical mystery data
+        const logicalMystery = {
+            "id": "governance_heist_1757709845123",
+            "title": "The Phantom Proposal Heist",
+            "setting": "Avalanche Governance Council Chambers, Digital Realm",
+            "incidentDescription": "At 3:17 AM, a malicious governance proposal passed with 67% of the vote, granting emergency withdrawal rights to a mysterious address. Within minutes, 2.5 million AVAX vanished from the protocol treasury. The proposal appeared legitimate but contained hidden code that activated after approval.",
+            "victim": {
+                "name": "TreasureDAO Protocol",
+                "role": "Decentralized Investment Fund",
+                "whatHappened": "Treasury completely drained through governance exploit",
+                "technicalDetails": "Proposal #247 contained obfuscated code that granted withdrawer role to address 0x789..."
+            },
+            "suspects": [
+                {
+                    "id": 1,
+                    "name": "Elena Vasquez",
+                    "age": 29,
+                    "background": "DeFi Protocol Developer",
+                    "avaxRole": "Core contributor to multiple Avalanche protocols",
+                    "motive": "Recently fired from TreasureDAO for proposing risky investment strategies",
+                    "alibi": "Claims she was working on a new protocol launch all night",
+                    "technicalCapability": "Expert smart contract developer, knows governance systems inside-out"
+                },
+                {
+                    "id": 2,
+                    "name": "Marcus Thompson",
+                    "age": 45,
+                    "background": "Avalanche Whale Investor",
+                    "avaxRole": "Holds 1.8M AVAX across multiple wallets",
+                    "motive": "Lost $500K in TreasureDAO's failed investment and wants compensation",
+                    "alibi": "Was attending an investor meeting in Singapore (timestamped video calls)",
+                    "technicalCapability": "Business background, limited technical skills, hires developers"
+                },
+                {
+                    "id": 3,
+                    "name": "Dr. Sarah Chen",
+                    "age": 38,
+                    "background": "Blockchain Security Researcher",
+                    "avaxRole": "Audits smart contracts for Avalanche protocols",
+                    "motive": "Discovered the vulnerability 6 months ago, TreasureDAO ignored her warnings",
+                    "alibi": "Home alone writing a research paper on governance attacks",
+                    "technicalCapability": "PhD in Computer Science, expert in smart contract vulnerabilities"
+                },
+                {
+                    "id": 4,
+                    "name": "Alex Rivera",
+                    "age": 32,
+                    "background": "Avalanche Validator Operator",
+                    "avaxRole": "Runs 12 validator nodes, participates in governance",
+                    "motive": "Needs funds to expand validator operations and compete with larger players",
+                    "alibi": "Was monitoring validator nodes during network upgrade",
+                    "technicalCapability": "Strong understanding of Avalanche consensus, moderate smart contract skills"
+                }
+            ],
+            "clues": [
+                {
+                    "id": 1,
+                    "description": "The malicious proposal was submitted from IP address 192.168.0.115, which traces to a coffee shop in downtown Seattle. Security cameras show someone using a laptop with distinctive stickers at 2:45 AM.",
+                    "avaxConcept": "Governance proposal submission and IP tracking",
+                    "educationalLinks": [
+                        {
+                            "term": "Governance Attack",
+                            "url": "https://docs.avax.network/learn/avalanche/governance",
+                            "briefExplanation": "When someone manipulates voting to control a protocol",
+                            "detailedExplanation": "A governance attack occurs when an attacker accumulates enough governance tokens to propose and pass malicious proposals. In DeFi protocols, governance tokens give holders voting rights on protocol changes. If someone gets >51% of tokens (or enough to reach quorum), they can vote to drain treasuries, change fee structures, or modify smart contracts for personal benefit."
+                        }
+                    ],
+                    "rarity": "common",
+                    "marketValue": 0.5,
+                    "eliminatesWho": ["Marcus Thompson"],
+                    "pointsTo": null
+                },
+                {
+                    "id": 2,
+                    "description": "Blockchain analysis reveals the proposal was funded by a flash loan from Aave protocol. 50,000 AVAX was borrowed, used to buy governance tokens, vote, then repaid within the same transaction block.",
+                    "avaxConcept": "Flash loans and governance token manipulation",
+                    "educationalLinks": [
+                        {
+                            "term": "Flash Loan",
+                            "url": "https://docs.avax.network/dapps/smart-contracts/flash-loans",
+                            "briefExplanation": "Borrowing crypto that must be repaid in the same transaction",
+                            "detailedExplanation": "Flash loans allow borrowing large amounts of cryptocurrency without collateral, but the loan must be repaid within the same blockchain transaction. If not repaid, the entire transaction fails. Attackers use flash loans to manipulate prices, exploit arbitrage, or temporarily gain voting power in governance attacks."
+                        }
+                    ],
+                    "rarity": "uncommon",
+                    "marketValue": 2.0,
+                    "eliminatesWho": ["Alex Rivera"],
+                    "pointsTo": null
+                },
+                {
+                    "id": 3,
+                    "description": "The smart contract code in the proposal contains a deliberate obfuscation technique called 'constructor aliasing' - a rare method only taught in advanced security courses at 3 universities.",
+                    "avaxConcept": "Advanced smart contract obfuscation techniques",
+                    "educationalLinks": [
+                        {
+                            "term": "Smart Contract Vulnerability",
+                            "url": "https://docs.avax.network/dapps/smart-contracts/security",
+                            "briefExplanation": "Bugs in code that attackers can exploit",
+                            "detailedExplanation": "Smart contracts are immutable code, so bugs become permanent vulnerabilities. Common issues include reentrancy attacks (calling functions repeatedly), integer overflow (numbers becoming too large), and access control bugs (wrong permissions). Audits help find these issues before deployment."
+                        }
+                    ],
+                    "rarity": "rare",
+                    "marketValue": 8.0,
+                    "eliminatesWho": [],
+                    "pointsTo": "Dr. Sarah Chen"
+                },
+                {
+                    "id": 4,
+                    "description": "Coffee shop security footage shows someone wearing a 'BlockSec Research Conference 2024' hoodie - the same conference where Dr. Chen presented her governance attack research paper.",
+                    "avaxConcept": "Digital forensics and identity correlation",
+                    "educationalLinks": [
+                        {
+                            "term": "Governance Attack",
+                            "url": "https://docs.avax.network/learn/avalanche/governance",
+                            "briefExplanation": "When someone manipulates voting to control a protocol",
+                            "detailedExplanation": "A governance attack occurs when an attacker accumulates enough governance tokens to propose and pass malicious proposals. In DeFi protocols, governance tokens give holders voting rights on protocol changes. If someone gets >51% of tokens (or enough to reach quorum), they can vote to drain treasuries, change fee structures, or modify smart contracts for personal benefit."
+                        }
+                    ],
+                    "rarity": "uncommon",
+                    "marketValue": 1.5,
+                    "eliminatesWho": [],
+                    "pointsTo": "Dr. Sarah Chen"
+                },
+                {
+                    "id": 5,
+                    "description": "The withdrawal address 0x789abc... was created exactly 6 months ago - the same day Dr. Chen submitted her vulnerability report to TreasureDAO. Address creation timestamp matches her email timestamp.",
+                    "avaxConcept": "Blockchain address analysis and timestamp correlation",
+                    "educationalLinks": [
+                        {
+                            "term": "Smart Contract Vulnerability",
+                            "url": "https://docs.avax.network/dapps/smart-contracts/security",
+                            "briefExplanation": "Bugs in code that attackers can exploit",
+                            "detailedExplanation": "Smart contracts are immutable code, so bugs become permanent vulnerabilities. Common issues include reentrancy attacks (calling functions repeatedly), integer overflow (numbers becoming too large), and access control bugs (wrong permissions). Audits help find these issues before deployment."
+                        }
+                    ],
+                    "rarity": "legendary",
+                    "marketValue": 25.0,
+                    "eliminatesWho": [],
+                    "pointsTo": "Dr. Sarah Chen"
+                }
+            ],
+            "solution": {
+                "culprit": "Dr. Sarah Chen",
+                "method": "Used flash loan to temporarily acquire governance tokens, submitted obfuscated proposal, voted it through, then executed the hidden withdrawal function",
+                "motive": "Revenge against TreasureDAO for ignoring her security warnings and frustration with DeFi protocols not taking security seriously",
+                "evidence": [
+                    "IP address traces to coffee shop where she was seen",
+                    "Flash loan technique matches her research expertise",
+                    "Obfuscation method from her academic background",
+                    "Conference hoodie identifies her in footage",
+                    "Withdrawal address created when she discovered the vulnerability"
+                ],
+                "howCluesPointToCulprit": "Clue 1 eliminates Marcus (wrong location), Clue 2 eliminates Alex (lacks flash loan skills), Clues 3-5 all point to Dr. Chen through her academic background, research expertise, and the timing correlation between her vulnerability discovery and the attack preparation."
+            }
+        };
+
+        let revealedClues = new Set();
+        let solutionRevealed = false;
+
+        function displayMystery() {
+            const mysteryContent = document.getElementById('mysteryContent');
+            
+            const html = `
+                <div class="mystery-card">
+                    <h2 class="mystery-title">${logicalMystery.title}</h2>
+                    
+                    <div class="section">
+                        <div class="section-title">🏛️ Setting</div>
+                        <p><strong>${logicalMystery.setting}</strong></p>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">🚨 The Incident</div>
+                        <div class="incident-description">
+                            ${logicalMystery.incidentDescription}
+                        </div>
+                        <div class="victim-card">
+                            <h3>💀 Victim: ${logicalMystery.victim.name}</h3>
+                            <p><strong>Role:</strong> ${logicalMystery.victim.role}</p>
+                            <p><strong>What Happened:</strong> ${logicalMystery.victim.whatHappened}</p>
+                            <p><strong>Technical Details:</strong> ${logicalMystery.victim.technicalDetails}</p>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">🕵️ Suspects</div>
+                        <div class="suspects-grid" id="suspectsGrid">
+                            ${logicalMystery.suspects.map(suspect => `
+                                <div class="suspect-card" id="suspect-${suspect.id}">
+                                    <div class="suspect-name">${suspect.name} (${suspect.age})</div>
+                                    <p><strong>Background:</strong> ${suspect.background}</p>
+                                    <p><strong>AVAX Role:</strong> ${suspect.avaxRole}</p>
+                                    <p><strong>Motive:</strong> ${suspect.motive}</p>
+                                    <p><strong>Alibi:</strong> ${suspect.alibi}</p>
+                                    <p><strong>Technical Skills:</strong> ${suspect.technicalCapability}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="section clues-section">
+                        <div class="section-title">🔍 Evidence & Clues</div>
+                        <p style="margin-bottom: 20px; color: #b8b8b8; font-style: italic;">
+                            Collect clues by playing mini-games. Each clue teaches you AVAX concepts and helps eliminate suspects.
+                        </p>
+                        ${logicalMystery.clues.map((clue, index) => `
+                            <div class="clue-card" id="clue-${clue.id}">
+                                <div class="market-value">${clue.marketValue} AVAX</div>
+                                <div class="clue-header">
+                                    <span class="clue-number">Clue #${clue.id}</span>
+                                    <span class="clue-rarity rarity-${clue.rarity}">${clue.rarity}</span>
+                                </div>
+                                
+                                <div class="clue-content" id="clue-content-${clue.id}" style="display: none;">
+                                    <div class="clue-description">
+                                        ${clue.description}
+                                    </div>
+                                    
+                                    <div class="clue-analysis">
+                                        <strong>🎓 Teaches:</strong> ${clue.avaxConcept}
+                                    </div>
+
+                                    ${clue.eliminatesWho && clue.eliminatesWho.length > 0 ? `
+                                        <div class="clue-eliminates">
+                                            ❌ Eliminates: ${clue.eliminatesWho.join(', ')}
+                                        </div>
+                                    ` : ''}
+
+                                    ${clue.pointsTo ? `
+                                        <div class="clue-points-to">
+                                            👆 Points to: ${clue.pointsTo}
+                                        </div>
+                                    ` : ''}
+
+                                    <div class="educational-links">
+                                        <h4>📚 Learn More:</h4>
+                                        ${clue.educationalLinks.map(link => `
+                                            <a href="${link.url}" target="_blank" class="edu-link">
+                                                <div class="edu-link-title">🔗 ${link.term}</div>
+                                                <div class="edu-link-brief">${link.briefExplanation}</div>
+                                                <div style="font-size: 0.8em; color: #888; margin-top: 5px;">
+                                                    Click to learn: ${link.detailedExplanation.substring(0, 100)}...
+                                                </div>
+                                            </a>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                                
+                                <button class="reveal-clue-btn" onclick="revealClue(${clue.id})">
+                                    🎁 Reveal Clue (Earned from Mini-Game)
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <button class="toggle-solution" onclick="toggleSolution()">
+                        🎯 Reveal Solution & Analysis
+                    </button>
+
+                    <div class="solution-card hidden" id="solutionCard">
+                        <div class="section-title">🏆 Case Solved!</div>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <h3 style="color: #4caf50;">Culprit: ${logicalMystery.solution.culprit}</h3>
+                            <p><strong>Method:</strong> ${logicalMystery.solution.method}</p>
+                            <p><strong>Motive:</strong> ${logicalMystery.solution.motive}</p>
+                        </div>
+
+                        <div class="deduction-chain">
+                            <h4 style="color: #d4af37; margin-bottom: 15px;">🧠 Logical Deduction Chain:</h4>
+                            <p style="margin-bottom: 15px;">${logicalMystery.solution.howCluesPointToCulprit}</p>
+                            
+                            <h4 style="color: #d4af37; margin-bottom: 10px;">Key Evidence:</h4>
+                            ${logicalMystery.solution.evidence.map(evidence => `
+                                <div class="deduction-step">• ${evidence}</div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            mysteryContent.innerHTML = html;
+        }
+
+        function revealClue(clueId) {
+            revealedClues.add(clueId);
+            const clueContent = document.getElementById(`clue-content-${clueId}`);
+            const revealButton = document.querySelector(`#clue-${clueId} .reveal-clue-btn`);
+            
+            clueContent.style.display = 'block';
+            revealButton.style.display = 'none';
+
+            // Update suspect cards based on this clue
+            updateSuspectStatus();
+        }
+
+        function updateSuspectStatus() {
+            const eliminatedSuspects = new Set();
+            const pointedToSuspects = new Set();
+
+            // Collect all eliminations and pointings from revealed clues
+            logicalMystery.clues.forEach(clue => {
+                if (revealedClues.has(clue.id)) {
+                    if (clue.eliminatesWho) {
+                        clue.eliminatesWho.forEach(suspect => eliminatedSuspects.add(suspect));
+                    }
+                    if (clue.pointsTo) {
+                        pointedToSuspects.add(clue.pointsTo);
+                    }
+                }
+            });
+
+            // Update suspect cards
+            logicalMystery.suspects.forEach(suspect => {
+                const card = document.getElementById(`suspect-${suspect.id}`);
+                
+                if (eliminatedSuspects.has(suspect.name)) {
+                    card.classList.add('eliminated');
+                    card.classList.remove('culprit');
+                } else if (solutionRevealed && suspect.name === logicalMystery.solution.culprit) {
+                    card.classList.add('culprit');
+                    card.classList.remove('eliminated');
+                } else {
+                    card.classList.remove('eliminated', 'culprit');
+                }
+            });
+        }
+
+        function toggleSolution() {
+            const solutionCard = document.getElementById('solutionCard');
+            const button = document.querySelector('.toggle-solution');
+            
+            solutionRevealed = !solutionRevealed;
+            
+            if (solutionRevealed) {
+                solutionCard.classList.remove('hidden');
+                button.textContent = '🙈 Hide Solution';
+            } else {
+                solutionCard.classList.add('hidden');
+                button.textContent = '🎯 Reveal Solution & Analysis';
+            }
+            
+            updateSuspectStatus();
+        }
+
+        // Load the mystery when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            displayMystery();
+        });
+    </script>
+</body>
+</html>
+
+

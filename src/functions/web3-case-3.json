@@ -1,0 +1,128 @@
+{
+  "generatedAt": "2025-09-13T13:14:37.218Z",
+  "engine": "Gemini (via src/functions/generate.ts)",
+  "theme": "defi_heist",
+  "difficulty": "advanced",
+  "case": {
+    "id": "AvalancheDrainMystery",
+    "title": "The Case of the Drained Liquidity Pool",
+    "shortDescription": "A significant amount of AVAX and USDC has vanished from a prominent Avalanche liquidity pool.  The investigation centers on a whale trader, a smart contract auditor, the protocol founder, and a prolific yield farmer.",
+    "victim": {
+      "name": "AvalancheSwap Protocol",
+      "age": 2,
+      "background": "Decentralized exchange (DEX) on the Avalanche blockchain",
+      "avaxRole": "Major DeFi protocol"
+    },
+    "suspects": [
+      {
+        "id": 1,
+        "name": "KrakenWhale",
+        "age": 35,
+        "background": "High-volume trader with a history of arbitrage",
+        "possibleMotive": "Profit from exploiting price discrepancies or manipulating the pool",
+        "avaxConnection": "Frequent trader on AvalancheSwap",
+        "educationalLinks": []
+      },
+      {
+        "id": 2,
+        "name": "Dr. Audit",
+        "age": 40,
+        "background": "Renowned smart contract auditor with access to the protocol's codebase",
+        "possibleMotive": "Planting a backdoor for future exploitation or acting on behalf of another party",
+        "avaxConnection": "Audited AvalancheSwap's smart contracts six months prior",
+        "educationalLinks": [
+          {
+            "term": "Smart Contract",
+            "url": "https://docs.avax.network/learn/avalanche/smart-contracts",
+            "briefExplanation": "Self-executing contracts with terms written in code. Like a digital vending machine - you put money in, get the product out automatically."
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "AvaxFounder",
+        "age": 30,
+        "background": "Founder of AvalancheSwap, with significant control over the protocol's operations",
+        "possibleMotive": "Insider trading or siphoning funds for personal gain",
+        "avaxConnection": "Protocol founder and holds a substantial amount of AVAX and governance tokens",
+        "educationalLinks": []
+      },
+      {
+        "id": 4,
+        "name": "YieldFarmerJoe",
+        "age": 28,
+        "background": "Experienced yield farmer known for aggressive strategies",
+        "possibleMotive": "Exploiting a vulnerability in the pool's mechanics to maximize profits",
+        "avaxConnection": "Heavy user of AvalancheSwap's liquidity pools",
+        "educationalLinks": [
+          {
+            "term": "Liquidity Pool",
+            "url": "https://traderjoe.xyz/learn/what-is-a-liquidity-pool",
+            "briefExplanation": "A shared pot of money that enables trading. Like a community fund where people contribute and earn fees from trades."
+          }
+        ]
+      }
+    ],
+    "clues": [
+      {
+        "id": 1,
+        "description": "Blockchain analysis reveals a series of large, unusual transactions originating from a single wallet shortly before the drain.  The wallet's activity is consistent with sophisticated arbitrage strategies.",
+        "avaxConcept": "Arbitrage",
+        "educationalLinks": [],
+        "difficulty": "easy"
+      },
+      {
+        "id": 2,
+        "description": "A minor, previously undetected vulnerability in the smart contract's logic was discovered, enabling a sophisticated MEV attack. This vulnerability would allow an attacker to drain the liquidity pool ahead of other transactions.",
+        "avaxConcept": "MEV attack",
+        "educationalLinks": [
+          {
+            "term": "Smart Contract",
+            "url": "https://docs.avax.network/learn/avalanche/smart-contracts",
+            "briefExplanation": "Self-executing contracts with terms written in code. Like a digital vending machine - you put money in, get the product out automatically."
+          },
+          {
+            "term": "Liquidity Pool",
+            "url": "https://traderjoe.xyz/learn/what-is-a-liquidity-pool",
+            "briefExplanation": "A shared pot of money that enables trading. Like a community fund where people contribute and earn fees from trades."
+          }
+        ],
+        "difficulty": "medium"
+      },
+      {
+        "id": 3,
+        "description": "Analysis of on-chain data shows significant impermanent loss just prior to the drain, suggesting manipulation of the pool's liquidity.",
+        "avaxConcept": "Impermanent loss",
+        "educationalLinks": [],
+        "difficulty": "medium"
+      },
+      {
+        "id": 4,
+        "description": "Private keys and source code reveal Dr. Audit's personal wallet interacted with a now-deleted smart contract deployment containing the vulnerability that enabled the exploit.",
+        "avaxConcept": "Smart Contract Auditing",
+        "educationalLinks": [
+          {
+            "term": "Smart Contract",
+            "url": "https://docs.avax.network/learn/avalanche/smart-contracts",
+            "briefExplanation": "Self-executing contracts with terms written in code. Like a digital vending machine - you put money in, get the product out automatically."
+          }
+        ],
+        "difficulty": "hard"
+      }
+    ],
+    "solution": {
+      "culprit": "Dr. Audit",
+      "motive": "Personal gain through exploitation of a vulnerability he discovered but failed to report; potentially working in collaboration with KrakenWhale for more advanced manipulation.",
+      "explanation": "While KrakenWhale's activities were suspicious, their actions were consistent with arbitrage, albeit on an unusually large scale.  YieldFarmerJoe's activities were also significant, but didn’t show evidence of direct involvement in the exploit. AvaxFounder had no apparent direct involvement.  However, Dr. Audit had both the knowledge of the vulnerability (clue 4) and the opportunity to exploit it. The combined evidence points to Dr. Audit creating the vulnerability (possibly unintentionally) during the audit, then, perhaps later exploiting the vulnerability in collaboration with KrakenWhale to maximize profit using MEV manipulation and impermanent loss (clues 1, 2, 3) before removing evidence."
+    },
+    "educationalGoals": [
+      "Understanding arbitrage and its role in DeFi",
+      "Identifying and mitigating MEV attacks",
+      "Recognizing the risks of impermanent loss in liquidity pools",
+      "The importance of rigorous smart contract audits"
+    ],
+    "difficultyLevel": "advanced"
+  },
+  "raw": "```json\n{\n  \"id\": \"AvalancheDrainMystery\",\n  \"title\": \"The Case of the Drained Liquidity Pool\",\n  \"shortDescription\": \"A significant amount of AVAX and USDC has vanished from a prominent Avalanche liquidity pool.  The investigation centers on a whale trader, a smart contract auditor, the protocol founder, and a prolific yield farmer.\",\n  \"victim\": {\n    \"name\": \"AvalancheSwap Protocol\",\n    \"age\": 2,\n    \"background\": \"Decentralized exchange (DEX) on the Avalanche blockchain\",\n    \"avaxRole\": \"Major DeFi protocol\"\n  },\n  \"suspects\": [\n    {\n      \"id\": 1,\n      \"name\": \"KrakenWhale\",\n      \"age\": 35,\n      \"background\": \"High-volume trader with a history of arbitrage\",\n      \"possibleMotive\": \"Profit from exploiting price discrepancies or manipulating the pool\",\n      \"avaxConnection\": \"Frequent trader on AvalancheSwap\"\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Dr. Audit\",\n      \"age\": 40,\n      \"background\": \"Renowned smart contract auditor with access to the protocol's codebase\",\n      \"possibleMotive\": \"Planting a backdoor for future exploitation or acting on behalf of another party\",\n      \"avaxConnection\": \"Audited AvalancheSwap's smart contracts six months prior\"\n    },\n    {\n      \"id\": 3,\n      \"name\": \"AvaxFounder\",\n      \"age\": 30,\n      \"background\": \"Founder of AvalancheSwap, with significant control over the protocol's operations\",\n      \"possibleMotive\": \"Insider trading or siphoning funds for personal gain\",\n      \"avaxConnection\": \"Protocol founder and holds a substantial amount of AVAX and governance tokens\"\n    },\n    {\n      \"id\": 4,\n      \"name\": \"YieldFarmerJoe\",\n      \"age\": 28,\n      \"background\": \"Experienced yield farmer known for aggressive strategies\",\n      \"possibleMotive\": \"Exploiting a vulnerability in the pool's mechanics to maximize profits\",\n      \"avaxConnection\": \"Heavy user of AvalancheSwap's liquidity pools\"\n    }\n  ],\n  \"clues\": [\n    {\n      \"id\": 1,\n      \"description\": \"Blockchain analysis reveals a series of large, unusual transactions originating from a single wallet shortly before the drain.  The wallet's activity is consistent with sophisticated arbitrage strategies.\",\n      \"avaxConcept\": \"Arbitrage\",\n      \"difficulty\": \"easy\"\n    },\n    {\n      \"id\": 2,\n      \"description\": \"A minor, previously undetected vulnerability in the smart contract's logic was discovered, enabling a sophisticated MEV attack. This vulnerability would allow an attacker to drain the liquidity pool ahead of other transactions.\",\n      \"avaxConcept\": \"MEV attack\",\n      \"difficulty\": \"medium\"\n    },\n    {\n      \"id\": 3,\n      \"description\": \"Analysis of on-chain data shows significant impermanent loss just prior to the drain, suggesting manipulation of the pool's liquidity.\",\n      \"avaxConcept\": \"Impermanent loss\",\n      \"difficulty\": \"medium\"\n    },\n    {\n      \"id\": 4,\n      \"description\": \"Private keys and source code reveal Dr. Audit's personal wallet interacted with a now-deleted smart contract deployment containing the vulnerability that enabled the exploit.\",\n      \"avaxConcept\": \"Smart Contract Auditing\",\n      \"difficulty\": \"hard\"\n    }\n  ],\n  \"solution\": {\n    \"culprit\": \"Dr. Audit\",\n    \"motive\": \"Personal gain through exploitation of a vulnerability he discovered but failed to report; potentially working in collaboration with KrakenWhale for more advanced manipulation.\",\n    \"explanation\": \"While KrakenWhale's activities were suspicious, their actions were consistent with arbitrage, albeit on an unusually large scale.  YieldFarmerJoe's activities were also significant, but didn’t show evidence of direct involvement in the exploit. AvaxFounder had no apparent direct involvement.  However, Dr. Audit had both the knowledge of the vulnerability (clue 4) and the opportunity to exploit it. The combined evidence points to Dr. Audit creating the vulnerability (possibly unintentionally) during the audit, then, perhaps later exploiting the vulnerability in collaboration with KrakenWhale to maximize profit using MEV manipulation and impermanent loss (clues 1, 2, 3) before removing evidence.\"\n  },\n  \"educationalGoals\": [\n    \"Understanding arbitrage and its role in DeFi\",\n    \"Identifying and mitigating MEV attacks\",\n    \"Recognizing the risks of impermanent loss in liquidity pools\",\n    \"The importance of rigorous smart contract audits\"\n  ],\n  \"difficultyLevel\": \"advanced\"\n}\n```\n",
+  "promptUsed": "\nCreate a DeFi mystery case about a suspicious drain from a major Avalanche protocol. Include suspects like a whale trader, smart contract auditor, protocol founder, and yield farmer. Focus on concepts like liquidity pools, impermanent loss, and MEV attacks.\n\nYou MUST produce a fully coherent case where story, suspects, clues, and solution logically connect. Each clue must help narrow suspects toward the final culprit; each suspect's background and motive must align with the shortDescription and solution.\n\nOutput STRICT JSON only (no markdown, no commentary). Use this exact schema:\n{\n  \"id\": string,\n  \"title\": string,\n  \"shortDescription\": string,\n  \"victim\": { \"name\": string, \"age\": number, \"background\": string, \"avaxRole\": string },\n  \"suspects\": [ { \"id\": number, \"name\": string, \"age\": number, \"background\": string, \"possibleMotive\": string, \"avaxConnection\": string } ],\n  \"clues\": [ { \"id\": number, \"description\": string, \"avaxConcept\": string, \"difficulty\": \"easy\"|\"medium\"|\"hard\" } ],\n  \"solution\": { \"culprit\": string, \"motive\": string, \"explanation\": string },\n  \"educationalGoals\": string[],\n  \"difficultyLevel\": \"beginner\"|\"intermediate\"|\"advanced\"\n}\n\nConstraints:\n- Tailor suspects and clues to the exact incident described.\n- Ensure the culprit is among suspects; clues justify the conclusion.\n- Difficulty is advanced.\n"
+}

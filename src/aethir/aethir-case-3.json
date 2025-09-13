@@ -1,0 +1,219 @@
+{
+  "generatedAt": "2025-09-13T13:53:48.724Z",
+  "engine": "Gemini (via src/functions/generate.ts)",
+  "theme": "bridge_exploit",
+  "difficulty": "advanced",
+  "case": {
+    "id": "avax-bridge-heist",
+    "title": "The Case of the Missing Wrapped AVAX",
+    "shortDescription": "10,000 Wrapped AVAX (WAVAX) vanishes during a cross-chain bridge operation from Avalanche to Ethereum.  The bridge operator, a seemingly altruistic white-hat hacker, a disgruntled former employee, and a rival protocol are all suspects.",
+    "victim": {
+      "name": "Avalanche Bridge Consortium",
+      "age": 2,
+      "background": "Decentralized cross-chain bridge operator on Avalanche.",
+      "avaxRole": "Bridge Operator"
+    },
+    "suspects": [
+      {
+        "id": 1,
+        "name": "Elias Thorne",
+        "age": 35,
+        "background": "Bridge Operator, Lead Developer at Avalanche Bridge Consortium.",
+        "possibleMotive": "Financial gain, disgruntled about recent salary negotiations.",
+        "avaxConnection": "Lead developer of the bridge",
+        "educationalLinks": [
+          {
+            "term": "Bridge",
+            "url": "https://docs.avax.network/cross-chain",
+            "briefExplanation": "Connects different blockchains. Like a bridge that lets you move assets between different digital countries."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Dr. Anya Sharma",
+        "age": 40,
+        "background": "Renowned white-hat hacker, known for ethically exposing vulnerabilities.",
+        "possibleMotive": "Accidental exposure of a vulnerability during a security audit (resulting in a loss).",
+        "avaxConnection": "Hired for a security audit before the incident.",
+        "educationalLinks": []
+      },
+      {
+        "id": 3,
+        "name": "Ben Carter",
+        "age": 28,
+        "background": "Former employee of Avalanche Bridge Consortium, fired for misconduct.",
+        "possibleMotive": "Revenge for unfair dismissal.",
+        "avaxConnection": "Former junior engineer, access to internal systems.",
+        "educationalLinks": [
+          {
+            "term": "Bridge",
+            "url": "https://docs.avax.network/cross-chain",
+            "briefExplanation": "Connects different blockchains. Like a bridge that lets you move assets between different digital countries."
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "NovaChain Protocol",
+        "age": 1,
+        "background": "Competing cross-chain protocol aiming to disrupt Avalanche's dominance.",
+        "possibleMotive": "Competitive sabotage, aiming to undermine Avalanche's reputation and attract users.",
+        "avaxConnection": "Direct competitor in the cross-chain space.",
+        "educationalLinks": []
+      },
+      {
+        "id": 5,
+        "name": "Marcus Riley",
+        "age": 30,
+        "background": "Independent security researcher, known for identifying and exploiting smart contract flaws.",
+        "possibleMotive": "Financial gain, exploited a zero-day vulnerability.",
+        "avaxConnection": "No direct connection, but known for targeting similar bridges.",
+        "educationalLinks": [
+          {
+            "term": "Smart Contract",
+            "url": "https://docs.avax.network/learn/avalanche/smart-contracts",
+            "briefExplanation": "Self-executing contracts with terms written in code. Like a digital vending machine - you put money in, get the product out automatically."
+          },
+          {
+            "term": "Bridge",
+            "url": "https://docs.avax.network/cross-chain",
+            "briefExplanation": "Connects different blockchains. Like a bridge that lets you move assets between different digital countries."
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Isabelle Dubois",
+        "age": 25,
+        "background": "Avalanche validator node operator.",
+        "possibleMotive": "Financial gain, exploited a validator node vulnerability.",
+        "avaxConnection": "Operates a validator node on the Avalanche network.",
+        "educationalLinks": [
+          {
+            "term": "Validator",
+            "url": "https://docs.avax.network/nodes/validate/what-is-staking",
+            "briefExplanation": "Computers that secure the network and verify transactions. Like digital security guards that get paid for their work."
+          }
+        ]
+      }
+    ],
+    "clues": [
+      {
+        "id": 1,
+        "description": "Logs show an unusual spike in transaction activity just before the WAVAX disappeared.",
+        "avaxConcept": "Transaction monitoring",
+        "educationalLinks": [],
+        "difficulty": "easy"
+      },
+      {
+        "id": 2,
+        "description": "A small, unnoticed code change was made to the bridge's smart contract a week before the incident.",
+        "avaxConcept": "Smart contract auditing",
+        "educationalLinks": [
+          {
+            "term": "Smart Contract",
+            "url": "https://docs.avax.network/learn/avalanche/smart-contracts",
+            "briefExplanation": "Self-executing contracts with terms written in code. Like a digital vending machine - you put money in, get the product out automatically."
+          },
+          {
+            "term": "Bridge",
+            "url": "https://docs.avax.network/cross-chain",
+            "briefExplanation": "Connects different blockchains. Like a bridge that lets you move assets between different digital countries."
+          }
+        ],
+        "difficulty": "medium"
+      },
+      {
+        "id": 3,
+        "description": "Ben Carter's access credentials were revoked but not deleted, possibly leaving an open backdoor.",
+        "avaxConcept": "Access control",
+        "educationalLinks": [],
+        "difficulty": "medium"
+      },
+      {
+        "id": 4,
+        "description": "Dr. Sharma's audit report noted a minor vulnerability but stated it was not exploitable without privileged access.",
+        "avaxConcept": "Security audit",
+        "educationalLinks": [],
+        "difficulty": "hard"
+      },
+      {
+        "id": 5,
+        "description": "The stolen WAVAX were transferred to an obscure, newly created Ethereum address.",
+        "avaxConcept": "Transaction tracing",
+        "educationalLinks": [],
+        "difficulty": "easy"
+      },
+      {
+        "id": 6,
+        "description": "Analysis of the stolen WAVAX's transaction path shows that it was routed through a mixer service.",
+        "avaxConcept": "Transaction obfuscation",
+        "educationalLinks": [],
+        "difficulty": "medium"
+      },
+      {
+        "id": 7,
+        "description": "Elias Thorne's financial records show unusual activity around the time of the theft, including large, untraceable cryptocurrency transactions.",
+        "avaxConcept": "Forensic accounting",
+        "educationalLinks": [],
+        "difficulty": "hard"
+      },
+      {
+        "id": 8,
+        "description": "The code change bypassed a critical security check related to the verification of wrapped tokens.",
+        "avaxConcept": "Wrapped token security",
+        "educationalLinks": [],
+        "difficulty": "hard"
+      },
+      {
+        "id": 9,
+        "description": "Network logs from Isabelle Dubois's validator node show no unusual activity.",
+        "avaxConcept": "Validator node security",
+        "educationalLinks": [
+          {
+            "term": "Validator",
+            "url": "https://docs.avax.network/nodes/validate/what-is-staking",
+            "briefExplanation": "Computers that secure the network and verify transactions. Like digital security guards that get paid for their work."
+          }
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "id": 10,
+        "description": "Marcus Riley was simultaneously working on a vulnerability disclosure program for a different bridge and had no time to exploit this one.",
+        "avaxConcept": "Timeline analysis",
+        "educationalLinks": [
+          {
+            "term": "Bridge",
+            "url": "https://docs.avax.network/cross-chain",
+            "briefExplanation": "Connects different blockchains. Like a bridge that lets you move assets between different digital countries."
+          }
+        ],
+        "difficulty": "medium"
+      },
+      {
+        "id": 11,
+        "description": "Forensic analysis reveals the code change was made using a laptop whose MAC address matches one registered to Elias Thorne.",
+        "avaxConcept": "Digital forensics",
+        "educationalLinks": [],
+        "difficulty": "hard"
+      }
+    ],
+    "solution": {
+      "culprit": "Elias Thorne",
+      "motive": "Financial gain and revenge for perceived unfair salary negotiations.",
+      "explanation": "The combination of the unusual transaction activity, the unnoticed code change bypassing critical security checks, and the matching MAC address strongly implicates Elias Thorne.  He exploited his privileged access as the lead developer to make the code change and steal the WAVAX.  The use of a mixer service further obfuscated his tracks."
+    },
+    "educationalGoals": [
+      "Understanding cross-chain bridge mechanics",
+      "Recognizing vulnerabilities in smart contracts",
+      "Importance of robust security audits and access control",
+      "The role of wrapped tokens in cross-chain transactions",
+      "Techniques used for tracing and analyzing blockchain transactions"
+    ],
+    "difficultyLevel": "advanced"
+  },
+  "raw": "```json\n{\n  \"id\": \"avax-bridge-heist\",\n  \"title\": \"The Case of the Missing Wrapped AVAX\",\n  \"shortDescription\": \"10,000 Wrapped AVAX (WAVAX) vanishes during a cross-chain bridge operation from Avalanche to Ethereum.  The bridge operator, a seemingly altruistic white-hat hacker, a disgruntled former employee, and a rival protocol are all suspects.\",\n  \"victim\": {\n    \"name\": \"Avalanche Bridge Consortium\",\n    \"age\": 2,\n    \"background\": \"Decentralized cross-chain bridge operator on Avalanche.\",\n    \"avaxRole\": \"Bridge Operator\"\n  },\n  \"suspects\": [\n    {\n      \"id\": 1,\n      \"name\": \"Elias Thorne\",\n      \"age\": 35,\n      \"background\": \"Bridge Operator, Lead Developer at Avalanche Bridge Consortium.\",\n      \"possibleMotive\": \"Financial gain, disgruntled about recent salary negotiations.\",\n      \"avaxConnection\": \"Lead developer of the bridge\"\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Dr. Anya Sharma\",\n      \"age\": 40,\n      \"background\": \"Renowned white-hat hacker, known for ethically exposing vulnerabilities.\",\n      \"possibleMotive\": \"Accidental exposure of a vulnerability during a security audit (resulting in a loss).\",\n      \"avaxConnection\": \"Hired for a security audit before the incident.\"\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Ben Carter\",\n      \"age\": 28,\n      \"background\": \"Former employee of Avalanche Bridge Consortium, fired for misconduct.\",\n      \"possibleMotive\": \"Revenge for unfair dismissal.\",\n      \"avaxConnection\": \"Former junior engineer, access to internal systems.\"\n    },\n    {\n      \"id\": 4,\n      \"name\": \"NovaChain Protocol\",\n      \"age\": 1,\n      \"background\": \"Competing cross-chain protocol aiming to disrupt Avalanche's dominance.\",\n      \"possibleMotive\": \"Competitive sabotage, aiming to undermine Avalanche's reputation and attract users.\",\n      \"avaxConnection\": \"Direct competitor in the cross-chain space.\"\n    },\n    {\n      \"id\": 5,\n      \"name\": \"Marcus Riley\",\n      \"age\": 30,\n      \"background\": \"Independent security researcher, known for identifying and exploiting smart contract flaws.\",\n      \"possibleMotive\": \"Financial gain, exploited a zero-day vulnerability.\",\n      \"avaxConnection\": \"No direct connection, but known for targeting similar bridges.\"\n    },\n    {\n      \"id\": 6,\n      \"name\": \"Isabelle Dubois\",\n      \"age\": 25,\n      \"background\": \"Avalanche validator node operator.\",\n      \"possibleMotive\": \"Financial gain, exploited a validator node vulnerability.\",\n      \"avaxConnection\": \"Operates a validator node on the Avalanche network.\"\n    }\n  ],\n  \"clues\": [\n    {\n      \"id\": 1,\n      \"description\": \"Logs show an unusual spike in transaction activity just before the WAVAX disappeared.\",\n      \"avaxConcept\": \"Transaction monitoring\",\n      \"difficulty\": \"easy\"\n    },\n    {\n      \"id\": 2,\n      \"description\": \"A small, unnoticed code change was made to the bridge's smart contract a week before the incident.\",\n      \"avaxConcept\": \"Smart contract auditing\",\n      \"difficulty\": \"medium\"\n    },\n    {\n      \"id\": 3,\n      \"description\": \"Ben Carter's access credentials were revoked but not deleted, possibly leaving an open backdoor.\",\n      \"avaxConcept\": \"Access control\",\n      \"difficulty\": \"medium\"\n    },\n    {\n      \"id\": 4,\n      \"description\": \"Dr. Sharma's audit report noted a minor vulnerability but stated it was not exploitable without privileged access.\",\n      \"avaxConcept\": \"Security audit\",\n      \"difficulty\": \"hard\"\n    },\n    {\n      \"id\": 5,\n      \"description\": \"The stolen WAVAX were transferred to an obscure, newly created Ethereum address.\",\n      \"avaxConcept\": \"Transaction tracing\",\n      \"difficulty\": \"easy\"\n    },\n    {\n      \"id\": 6,\n      \"description\": \"Analysis of the stolen WAVAX's transaction path shows that it was routed through a mixer service.\",\n      \"avaxConcept\": \"Transaction obfuscation\",\n      \"difficulty\": \"medium\"\n    },\n    {\n      \"id\": 7,\n      \"description\": \"Elias Thorne's financial records show unusual activity around the time of the theft, including large, untraceable cryptocurrency transactions.\",\n      \"avaxConcept\": \"Forensic accounting\",\n      \"difficulty\": \"hard\"\n    },\n    {\n      \"id\": 8,\n      \"description\": \"The code change bypassed a critical security check related to the verification of wrapped tokens.\",\n      \"avaxConcept\": \"Wrapped token security\",\n      \"difficulty\": \"hard\"\n    },\n    {\n      \"id\": 9,\n      \"description\": \"Network logs from Isabelle Dubois's validator node show no unusual activity.\",\n      \"avaxConcept\": \"Validator node security\",\n      \"difficulty\": \"easy\"\n    },\n    {\n      \"id\": 10,\n      \"description\": \"Marcus Riley was simultaneously working on a vulnerability disclosure program for a different bridge and had no time to exploit this one.\",\n      \"avaxConcept\": \"Timeline analysis\",\n      \"difficulty\": \"medium\"\n    },\n    {\n      \"id\": 11,\n      \"description\": \"Forensic analysis reveals the code change was made using a laptop whose MAC address matches one registered to Elias Thorne.\",\n      \"avaxConcept\": \"Digital forensics\",\n      \"difficulty\": \"hard\"\n    }\n  ],\n  \"solution\": {\n    \"culprit\": \"Elias Thorne\",\n    \"motive\": \"Financial gain and revenge for perceived unfair salary negotiations.\",\n    \"explanation\": \"The combination of the unusual transaction activity, the unnoticed code change bypassing critical security checks, and the matching MAC address strongly implicates Elias Thorne.  He exploited his privileged access as the lead developer to make the code change and steal the WAVAX.  The use of a mixer service further obfuscated his tracks.\"\n  },\n  \"educationalGoals\": [\n    \"Understanding cross-chain bridge mechanics\",\n    \"Recognizing vulnerabilities in smart contracts\",\n    \"Importance of robust security audits and access control\",\n    \"The role of wrapped tokens in cross-chain transactions\",\n    \"Techniques used for tracing and analyzing blockchain transactions\"\n  ],\n  \"difficultyLevel\": \"advanced\"\n}\n```\n",
+  "promptUsed": "\nCreate a mystery about missing funds during a cross-chain bridge operation. Include suspects like the bridge operator, a white-hat hacker, a disgruntled employee, and a competitor protocol. Focus on cross-chain security, wrapped tokens, and bridge mechanics.\n\nYou MUST produce a fully coherent case where story, suspects, clues, and solution logically connect. Each clue must help narrow suspects toward the final culprit; each suspect's background and motive must align with the shortDescription and solution.\n\nOutput STRICT JSON only (no markdown, no commentary). Use this exact schema:\n{\n  \"id\": string,\n  \"title\": string,\n  \"shortDescription\": string,\n  \"victim\": { \"name\": string, \"age\": number, \"background\": string, \"avaxRole\": string },\n  \"suspects\": [ { \"id\": number, \"name\": string, \"age\": number, \"background\": string, \"possibleMotive\": string, \"avaxConnection\": string } ],\n  \"clues\": [ { \"id\": number, \"description\": string, \"avaxConcept\": string, \"difficulty\": \"easy\"|\"medium\"|\"hard\" } ],\n  \"solution\": { \"culprit\": string, \"motive\": string, \"explanation\": string },\n  \"educationalGoals\": string[],\n  \"difficultyLevel\": \"beginner\"|\"intermediate\"|\"advanced\"\n}\n\nConstraints:\n- Tailor suspects and clues to the exact incident described.\n- Ensure the culprit is among suspects; clues justify the conclusion.\n- Difficulty is advanced.\n- Provide at least 6 suspects and at least 10 clues.\n"
+}

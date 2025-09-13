@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Advanced Avalanche Mystery - High Difficulty</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e8e8e8;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,0,0,0.1);
+            border-radius: 15px;
+            border: 2px solid #ff6b6b;
+            box-shadow: 0 0 20px rgba(255,107,107,0.3);
+        }
+
+        .header h1 {
+            font-size: 2.8em;
+            color: #ff6b6b;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .difficulty-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ff9800);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .mystery-card {
+            background: rgba(0,0,0,0.6);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #666;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+
+        .mystery-title {
+            font-size: 2.4em;
+            color: #ff6b6b;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #ff9800;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ff9800;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .incident-description {
+            background: rgba(255,107,107,0.15);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #ff6b6b;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .victim-card {
+            background: rgba(255,107,107,0.15);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .suspects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .suspect-card {
+            background: rgba(255,255,255,0.05);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #4ecdc4;
+            transition: all 0.3s ease;
+            position: relative;
+            min-height: 300px;
+        }
+
+        .suspect-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(78,205,196,0.4);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .suspect-card.eliminated {
+            border-left-color: #666;
+            background: rgba(255,255,255,0.02);
+            opacity: 0.5;
+        }
+
+        .suspect-card.eliminated::after {
+            content: "❌ ELIMINATED";
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #666;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .suspect-card.culprit {
+            border-left-color: #ff6b6b;
+            background: rgba(255,107,107,0.15);
+            box-shadow: 0 0 25px rgba(255,107,107,0.4);
+        }
+
+        .suspect-card.culprit::after {
+            content: "🎯 MASTERMIND";
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff6b6b;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .suspect-name {
+            font-size: 1.4em;
+            color: #4ecdc4;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .suspect-detail {
+            margin: 8px 0;
+            padding-left: 10px;
+        }
+
+        .suspect-detail strong {
+            color: #ff9800;
+        }
+
+        .clue-card {
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #ffa726;
+            margin-bottom: 25px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .clue-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateX(5px);
+        }
+
+        .clue-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .clue-number {
+            font-size: 1.5em;
+            color: #ff9800;
+            font-weight: bold;
+        }
+
+        .clue-rarity {
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .rarity-common { background: #4caf50; color: white; }
+        .rarity-uncommon { background: #2196f3; color: white; }
+        .rarity-rare { background: #9c27b0; color: white; }
+        .rarity-legendary { 
+            background: linear-gradient(45deg, #ff9800, #ffd700);
+            color: #000;
+            box-shadow: 0 0 15px rgba(255,152,0,0.5);
+        }
+
+        .clue-description {
+            font-size: 1.15em;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .clue-analysis {
+            background: rgba(255,152,0,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 3px solid #ff9800;
+            margin: 15px 0;
+        }
+
+        .clue-reasoning {
+            background: rgba(78,205,196,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #4ecdc4;
+            margin: 15px 0;
+            font-style: italic;
+        }
+
+        .clue-eliminates, .clue-points-to {
+            padding: 12px 18px;
+            border-radius: 10px;
+            margin: 12px 0;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .clue-eliminates {
+            background: rgba(136,136,136,0.2);
+            border-left: 4px solid #888;
+            color: #ccc;
+        }
+
+        .clue-points-to {
+            background: rgba(255,107,107,0.2);
+            border-left: 4px solid #ff6b6b;
+            color: #ff6b6b;
+        }
+
+        .educational-links {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(212,175,55,0.1);
+            border-radius: 10px;
+            border-left: 4px solid #d4af37;
+        }
+
+        .educational-links h4 {
+            color: #d4af37;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .edu-link {
+            display: block;
+            color: #4ecdc4;
+            text-decoration: none;
+            margin: 12px 0;
+            padding: 15px;
+            background: rgba(78,205,196,0.1);
+            border-radius: 8px;
+            border-left: 4px solid #4ecdc4;
+            transition: all 0.3s ease;
+        }
+
+        .edu-link:hover {
+            background: rgba(78,205,196,0.2);
+            transform: translateX(8px);
+            box-shadow: 0 4px 15px rgba(78,205,196,0.3);
+        }
+
+        .edu-link-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .edu-link-brief {
+            font-size: 1em;
+            color: #b8b8b8;
+            margin: 5px 0;
+        }
+
+        .edu-link-detailed {
+            font-size: 0.9em;
+            color: #888;
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        .solution-card {
+            background: rgba(76,175,80,0.15);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #4caf50;
+            margin-top: 30px;
+        }
+
+        .deduction-chain {
+            background: rgba(212,175,55,0.1);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #d4af37;
+            margin: 25px 0;
+        }
+
+        .deduction-step {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            border-left: 3px solid #4ecdc4;
+        }
+
+        .toggle-solution {
+            background: linear-gradient(45deg, #ff6b6b, #ff9800);
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 25px auto;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .toggle-solution:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255,107,107,0.4);
+        }
+
+        .hidden { display: none; }
+
+        .reveal-clue-btn {
+            background: rgba(255,167,38,0.9);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 20px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .reveal-clue-btn:hover {
+            background: rgba(255,167,38,1);
+            transform: scale(1.05);
+        }
+
+        .market-value {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #d4af37, #ffd700);
+            color: #000;
+            padding: 10px 15px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .prerequisites {
+            background: rgba(255,152,0,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ff9800;
+            margin: 20px 0;
+        }
+
+        .difficulty-stats {
+            background: rgba(255,107,107,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ff6b6b;
+            margin: 20px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-card {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #444;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            color: #ff9800;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: #b8b8b8;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .suspects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Advanced Avalanche Mystery</h1>
+            <div class="difficulty-badge">⚡ HIGH DIFFICULTY ⚡</div>
+            <div class="difficulty-badge">🧠 45-90 Minutes</div>
+            <div class="difficulty-badge">🎓 Expert Level</div>
+            <p style="margin-top: 15px; font-size: 1.1em;">Master advanced AVAX concepts through sophisticated detective work</p>
+        </div>
+
+        <div id="mysteryContent">
+            <!-- Advanced mystery content will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+        // Advanced mystery data from the generator
+        const advancedMystery = {
+            "id": "subnet_manipulation_advanced",
+            "title": "The Subnet Phantom: A Multi-Chain Conspiracy",
+            "setting": "Avalanche Core Network Operations Center & Custom Subnet Infrastructure",
+            "incidentDescription": "At 4:23 AM UTC, a coordinated attack across three Avalanche subnets resulted in the largest cross-chain exploit in DeFi history. 15.7 million AVAX, 45 million USDC, and 2,800 BTC vanished through a sophisticated MEV manipulation combined with subnet validator collusion. The attack used flash loans across multiple chains, manipulated cross-chain bridge oracles, and exploited a zero-day vulnerability in subnet consensus mechanisms. Total estimated damage: $89 million.",
+            "victim": {
+                "name": "Avalanche Multi-Chain Bridge Consortium",
+                "role": "Cross-chain infrastructure managing $2.1B in locked assets",
+                "whatHappened": "Coordinated attack across C-Chain, custom gaming subnet, and institutional trading subnet",
+                "technicalDetails": "Exploited subnet validator staking mechanism, manipulated cross-chain price oracles, executed atomic arbitrage with 47-block MEV sequence"
+            },
+            "suspects": [
+                {
+                    "id": 1,
+                    "name": "Dmitri Volkov",
+                    "age": 31,
+                    "background": "Former Avalanche Core Developer & Subnet Architect",
+                    "avaxRole": "Designed the multi-subnet bridge architecture, left Ava Labs 8 months ago",
+                    "motive": "Bitter departure from Ava Labs over disagreements about subnet security model, lost $2M in AVAX when fired",
+                    "alibi": "Claims he was presenting at EthCC in Paris (flight records show he was in NYC)",
+                    "technicalCapability": "Intimate knowledge of subnet consensus, bridge architecture, and validator mechanics. PhD in Distributed Systems from MIT.",
+                    "specialKnowledge": "Only 12 people know the subnet bridge's emergency pause mechanism"
+                },
+                {
+                    "id": 2,
+                    "name": "Dr. Luna Zhang",
+                    "age": 28,
+                    "background": "MEV Research Scientist & Flashbot Contributor",
+                    "avaxRole": "Researches MEV on Avalanche, runs the largest MEV extraction operation on subnets",
+                    "motive": "Discovered the vulnerability 4 months ago, Ava Labs refused to pay her $500K bug bounty claiming it was 'theoretical'",
+                    "alibi": "Live-streaming a 24-hour MEV research marathon on Twitch with 15K viewers",
+                    "technicalCapability": "World's leading expert on cross-chain MEV, invented the atomic arbitrage technique used in the attack",
+                    "specialKnowledge": "Created the exact flash loan sequence pattern found in the attack"
+                },
+                {
+                    "id": 3,
+                    "name": "Marcus 'Prophet' Chen",
+                    "age": 34,
+                    "background": "Avalanche Whale & Validator Empire Operator",
+                    "avaxRole": "Controls 47 validator nodes across 12 subnets, 8.2M AVAX staked",
+                    "motive": "Facing margin calls on $50M leveraged positions, needed liquidity fast",
+                    "alibi": "Was at his daughter's birthday party in Singapore (social media posts from family)",
+                    "technicalCapability": "Deep understanding of validator economics, but limited smart contract skills",
+                    "specialKnowledge": "Has inside knowledge of subnet validator slashing conditions"
+                },
+                {
+                    "id": 4,
+                    "name": "Alex 'Nexus' Rodriguez",
+                    "age": 26,
+                    "background": "Anonymous DeFi Architect & Cross-Chain Protocol Founder",
+                    "avaxRole": "Built 3 major cross-chain protocols on Avalanche, total TVL $400M",
+                    "motive": "One of his protocols was exploited for $12M last month, community blamed him, reputation destroyed",
+                    "alibi": "Posted anonymous proof-of-work puzzle solutions during attack window (could be pre-computed)",
+                    "technicalCapability": "Genius-level protocol designer, specialist in cross-chain bridge security",
+                    "specialKnowledge": "Pioneered the oracle manipulation technique used in the attack"
+                },
+                {
+                    "id": 5,
+                    "name": "Sarah 'Architect' Kim",
+                    "age": 29,
+                    "background": "Institutional Trading Subnet Governor",
+                    "avaxRole": "Manages $1.2B institutional subnet for major TradFi players",
+                    "motive": "Under SEC investigation for market manipulation, needs to disappear with funds",
+                    "alibi": "Was in emergency board meeting with institutional clients (encrypted communications only)",
+                    "technicalCapability": "Expert in institutional-grade security and compliance, moderate smart contract knowledge",
+                    "specialKnowledge": "Has emergency access keys to institutional subnet treasury"
+                }
+            ],
+            "clues": [
+                {
+                    "id": 1,
+                    "description": "Network analysis reveals the attack originated from 3 validator nodes that went offline simultaneously for exactly 14.7 seconds - the minimum time needed for subnet consensus to switch to backup validators. This timing suggests intimate knowledge of Avalanche's validator rotation algorithm.",
+                    "avaxConcept": "Subnet validator consensus and rotation mechanisms",
+                    "educationalLinks": [
+                        {
+                            "term": "Subnet Consensus",
+                            "url": "https://docs.avax.network/learn/avalanche/subnets",
+                            "briefExplanation": "How custom blockchains reach agreement on Avalanche",
+                            "detailedExplanation": "Avalanche subnets use their own consensus mechanisms while being secured by the main network. Validators must stake AVAX on the primary network and additional tokens on subnets. The consensus algorithm requires a minimum number of validators to be online, and switches to backup validators if primary ones go offline for more than 15 seconds."
+                        }
+                    ],
+                    "rarity": "uncommon",
+                    "marketValue": 3.2,
+                    "eliminatesWho": ["Dr. Luna Zhang", "Alex 'Nexus' Rodriguez"],
+                    "pointsTo": null,
+                    "reasoning": "Luna was live-streaming (can't control validators), Alex doesn't operate validators"
+                },
+                {
+                    "id": 2,
+                    "description": "The flash loan sequence used a novel 'atomic arbitrage cascade' across 7 different protocols in a single transaction. This exact technique was first published in an academic paper titled 'Cross-Chain MEV Extraction via Atomic Arbitrage' published 6 months ago.",
+                    "avaxConcept": "Advanced MEV (Maximum Extractable Value) techniques and atomic arbitrage",
+                    "educationalLinks": [
+                        {
+                            "term": "MEV (Maximum Extractable Value)",
+                            "url": "https://docs.avax.network/dapps/smart-contracts/mev",
+                            "briefExplanation": "Profit extracted by reordering transactions",
+                            "detailedExplanation": "MEV involves validators or bots reordering, including, or censoring transactions to extract profit. Atomic arbitrage is a sophisticated MEV technique where multiple trades are executed in a single transaction to guarantee profit. Cross-chain MEV involves coordinating these attacks across multiple blockchains simultaneously."
+                        }
+                    ],
+                    "rarity": "rare",
+                    "marketValue": 7.5,
+                    "eliminatesWho": ["Marcus 'Prophet' Chen"],
+                    "pointsTo": null,
+                    "reasoning": "Marcus lacks advanced smart contract skills for this sophisticated technique"
+                },
+                {
+                    "id": 3,
+                    "description": "Blockchain forensics reveal the attack used subnet emergency pause function #0x47A2B which was never publicly documented. Only core developers who worked on the original subnet architecture have access to this function's existence and implementation details.",
+                    "avaxConcept": "Subnet emergency mechanisms and core developer privileges",
+                    "educationalLinks": [
+                        {
+                            "term": "Subnet Architecture",
+                            "url": "https://docs.avax.network/learn/avalanche/subnets",
+                            "briefExplanation": "Custom blockchain networks built on Avalanche",
+                            "detailedExplanation": "Subnets are sovereign networks that define their own rules and validator sets while benefiting from Avalanche's security. Emergency functions allow core developers to pause operations in case of critical bugs or attacks. These functions are intentionally undocumented to prevent misuse."
+                        }
+                    ],
+                    "rarity": "legendary",
+                    "marketValue": 18.0,
+                    "eliminatesWho": ["Sarah 'Architect' Kim"],
+                    "pointsTo": "Dmitri Volkov",
+                    "reasoning": "Sarah is institutional focused, not core development. Dmitri designed the original architecture."
+                },
+                {
+                    "id": 4,
+                    "description": "The cross-chain oracle manipulation used a technique called 'price feed injection' that exploits a 2.1-second window in Chainlink oracle updates. Security camera footage from a NYC WeWork shows someone matching Dmitri's profile using three laptops simultaneously at 4:20 AM UTC.",
+                    "avaxConcept": "Cross-chain oracle security and price feed manipulation",
+                    "educationalLinks": [
+                        {
+                            "term": "Cross-Chain Oracle",
+                            "url": "https://docs.avax.network/dapps/oracles",
+                            "briefExplanation": "Services that provide external data to blockchains",
+                            "detailedExplanation": "Oracles feed real-world data like prices into smart contracts. Cross-chain oracles coordinate data between different blockchains. Price feed injection attacks exploit timing delays between oracle updates to manipulate prices during arbitrage. This requires precise timing and coordination across multiple chains."
+                        }
+                    ],
+                    "rarity": "rare",
+                    "marketValue": 8.8,
+                    "eliminatesWho": [],
+                    "pointsTo": "Dmitri Volkov",
+                    "reasoning": "Location evidence contradicts his Paris alibi, technique requires core development knowledge"
+                },
+                {
+                    "id": 5,
+                    "description": "Post-attack analysis reveals the attacker made a critical mistake: they used their personal GitHub SSH key to push code to a private repository during the attack. The key matches Dmitri Volkov's verified developer account and was used to update subnet bridge parameters 23 minutes before the attack.",
+                    "avaxConcept": "Developer operation security and smart contract deployment forensics",
+                    "educationalLinks": [
+                        {
+                            "term": "Smart Contract Deployment",
+                            "url": "https://docs.avax.network/dapps/smart-contracts/deploy",
+                            "briefExplanation": "Publishing code to the blockchain",
+                            "detailedExplanation": "Smart contract deployment involves compiling code and publishing it to the blockchain. Developer keys and signatures can be forensically analyzed to trace who deployed what code. Professional attackers use burner accounts, but under pressure, they sometimes make operational security mistakes."
+                        }
+                    ],
+                    "rarity": "legendary",
+                    "marketValue": 25.0,
+                    "eliminatesWho": [],
+                    "pointsTo": "Dmitri Volkov",
+                    "reasoning": "Direct forensic evidence linking him to the attack through verified developer credentials"
+                },
+                {
+                    "id": 6,
+                    "description": "Financial investigation reveals that 2 hours before the attack, someone purchased 150,000 AVAX using 5 different exchanges with privacy coins. The purchase pattern matches Dmitri's historical trading behavior analyzed through on-chain clustering algorithms.",
+                    "avaxConcept": "On-chain analysis and transaction clustering",
+                    "educationalLinks": [
+                        {
+                            "term": "On-Chain Analysis",
+                            "url": "https://docs.avax.network/dapps/chain-analysis",
+                            "briefExplanation": "Tracking cryptocurrency movements through blockchain data",
+                            "detailedExplanation": "On-chain analysis involves clustering addresses that likely belong to the same entity based on transaction patterns, timing, and amounts. Even when using privacy coins, behavioral patterns and timing can reveal connections. This is crucial for compliance and forensic investigations."
+                        }
+                    ],
+                    "rarity": "rare",
+                    "marketValue": 9.2,
+                    "eliminatesWho": [],
+                    "pointsTo": "Dmitri Volkov",
+                    "reasoning": "Trading pattern analysis provides additional behavioral evidence"
+                }
+            ],
+            "solution": {
+                "culprit": "Dmitri Volkov",
+                "method": "Leveraged his insider knowledge of subnet architecture to orchestrate a coordinated attack across multiple chains. Used undocumented emergency functions, manipulated validator consensus timing, and executed sophisticated MEV extraction while covering his tracks with false alibis.",
+                "motive": "Revenge against Ava Labs for his termination and desire to prove that the subnet security model he warned about was fundamentally flawed. Also needed funds after losing $2M AVAX when terminated.",
+                "evidence": [
+                    "Used undocumented subnet emergency pause function only core developers know",
+                    "Location evidence contradicts Paris alibi - was in NYC during attack",
+                    "Personal GitHub SSH key used during attack reveals identity",
+                    "Trading pattern matches his historical behavior",
+                    "Validator timing attack requires intimate knowledge of consensus algorithm",
+                    "Oracle manipulation technique matches his academic research background"
+                ],
+                "howCluesPointToCulprit": "Clue 1 eliminates Luna and Alex (validator requirement), Clue 2 eliminates Marcus (too complex), Clue 3 eliminates Sarah and points to Dmitri (core dev knowledge), Clues 4-6 provide mounting evidence against Dmitri through location, forensic, and behavioral analysis. The combination of his insider knowledge, motive for revenge, and forensic evidence creates an overwhelming case."
+            },
+            "educationalGoals": [
+                "Master advanced subnet architecture and consensus mechanisms",
+                "Understand sophisticated MEV extraction and atomic arbitrage",
+                "Learn cross-chain bridge security and oracle manipulation",
+                "Explore validator economics and staking mechanisms",
+                "Analyze on-chain forensics and behavioral clustering",
+                "Comprehend advanced DeFi attack vectors and prevention",
+                "Study developer operational security and code attribution"
+            ],
+            "difficultyLevel": "advanced",
+            "estimatedSolveTime": "45-90 minutes",
+            "prerequisiteKnowledge": [
+                "Understanding of validator staking and consensus",
+                "Basic knowledge of cross-chain bridges",
+                "Familiarity with MEV concepts",
+                "Smart contract development awareness"
+            ]
+        };
+
+        let revealedClues = new Set();
+        let solutionRevealed = false;
+
+        function displayAdvancedMystery() {
+            const mysteryContent = document.getElementById('mysteryContent');
+            
+            const html = `
+                <div class="mystery-card">
+                    <h2 class="mystery-title">${advancedMystery.title}</h2>
+                    
+                    <div class="section">
+                        <div class="section-title">🏛️ Operation Theater</div>
+                        <p style="font-size: 1.1em; color: #ff9800;"><strong>${advancedMystery.setting}</strong></p>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">🚨 The Advanced Incident</div>
+                        <div class="incident-description">
+                            ${advancedMystery.incidentDescription}
+                        </div>
+                        <div class="victim-card">
+                            <h3>💀 Target: ${advancedMystery.victim.name}</h3>
+                            <p><strong>Infrastructure:</strong> ${advancedMystery.victim.role}</p>
+                            <p><strong>Attack Vector:</strong> ${advancedMystery.victim.whatHappened}</p>
+                            <p><strong>Technical Analysis:</strong> ${advancedMystery.victim.technicalDetails}</p>
+                        </div>
+                    </div>
+
+                    <div class="difficulty-stats">
+                        <h3 style="color: #ff9800; margin-bottom: 15px;">📊 Challenge Parameters</h3>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number">${advancedMystery.difficultyLevel.toUpperCase()}</div>
+                                <div class="stat-label">Difficulty</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">${advancedMystery.estimatedSolveTime}</div>
+                                <div class="stat-label">Est. Time</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">${advancedMystery.clues.reduce((sum, clue) => sum + clue.marketValue, 0)} AVAX</div>
+                                <div class="stat-label">Total Value</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">${advancedMystery.educationalGoals.length}</div>
+                                <div class="stat-label">Concepts</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="prerequisites">
+                        <h3 style="color: #ff9800; margin-bottom: 15px;">🎓 Required Knowledge</h3>
+                        ${advancedMystery.prerequisiteKnowledge.map(req => `<p>• ${req}</p>`).join('')}
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">🕵️ Advanced Suspects</div>
+                        <div class="suspects-grid" id="suspectsGrid">
+                            ${advancedMystery.suspects.map(suspect => `
+                                <div class="suspect-card" id="suspect-${suspect.id}">
+                                    <div class="suspect-name">${suspect.name} (${suspect.age})</div>
+                                    <div class="suspect-detail"><strong>Background:</strong> ${suspect.background}</div>
+                                    <div class="suspect-detail"><strong>AVAX Role:</strong> ${suspect.avaxRole}</div>
+                                    <div class="suspect-detail"><strong>Motive:</strong> ${suspect.motive}</div>
+                                    <div class="suspect-detail"><strong>Alibi:</strong> ${suspect.alibi}</div>
+                                    <div class="suspect-detail"><strong>Technical Skills:</strong> ${suspect.technicalCapability}</div>
+                                    <div class="suspect-detail"><strong>Special Knowledge:</strong> ${suspect.specialKnowledge}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="section clues-section">
+                        <div class="section-title">🔍 Advanced Evidence Chain</div>
+                        <p style="margin-bottom: 25px; color: #b8b8b8; font-style: italic; font-size: 1.1em;">
+                            Sophisticated clues requiring deep AVAX expertise. Each reveals advanced concepts and builds logical chains.
+                        </p>
+                        ${advancedMystery.clues.map((clue, index) => `
+                            <div class="clue-card" id="clue-${clue.id}">
+                                <div class="market-value">${clue.marketValue} AVAX</div>
+                                <div class="clue-header">
+                                    <span class="clue-number">Evidence #${clue.id}</span>
+                                    <span class="clue-rarity rarity-${clue.rarity}">${clue.rarity}</span>
+                                </div>
+                                
+                                <div class="clue-content" id="clue-content-${clue.id}" style="display: none;">
+                                    <div class="clue-description">
+                                        ${clue.description}
+                                    </div>
+                                    
+                                    <div class="clue-analysis">
+                                        <strong>🎓 Advanced Concept:</strong> ${clue.avaxConcept}
+                                    </div>
+
+                                    <div class="clue-reasoning">
+                                        <strong>🧠 Analysis:</strong> ${clue.reasoning}
+                                    </div>
+
+                                    ${clue.eliminatesWho && clue.eliminatesWho.length > 0 ? `
+                                        <div class="clue-eliminates">
+                                            ❌ Rules Out: ${clue.eliminatesWho.join(', ')}
+                                        </div>
+                                    ` : ''}
+
+                                    ${clue.pointsTo ? `
+                                        <div class="clue-points-to">
+                                            👆 Implicates: ${clue.pointsTo}
+                                        </div>
+                                    ` : ''}
+
+                                    <div class="educational-links">
+                                        <h4>📚 Master These Concepts:</h4>
+                                        ${clue.educationalLinks.map(link => `
+                                            <a href="${link.url}" target="_blank" class="edu-link">
+                                                <div class="edu-link-title">🔗 ${link.term}</div>
+                                                <div class="edu-link-brief">${link.briefExplanation}</div>
+                                                <div class="edu-link-detailed">${link.detailedExplanation}</div>
+                                            </a>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                                
+                                <button class="reveal-clue-btn" onclick="revealAdvancedClue(${clue.id})">
+                                    🎁 Unlock Advanced Evidence
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <button class="toggle-solution" onclick="toggleAdvancedSolution()">
+                        🎯 Reveal Mastermind & Advanced Analysis
+                    </button>
+
+                    <div class="solution-card hidden" id="solutionCard">
+                        <div class="section-title">🏆 Case Closed: Advanced Solution</div>
+                        
+                        <div style="margin-bottom: 25px;">
+                            <h3 style="color: #4caf50; font-size: 1.8em;">Mastermind: ${advancedMystery.solution.culprit}</h3>
+                            <p style="margin: 15px 0;"><strong>Sophisticated Method:</strong> ${advancedMystery.solution.method}</p>
+                            <p><strong>Complex Motive:</strong> ${advancedMystery.solution.motive}</p>
+                        </div>
+
+                        <div class="deduction-chain">
+                            <h4 style="color: #d4af37; margin-bottom: 20px;">🧠 Advanced Deduction Chain:</h4>
+                            <p style="margin-bottom: 20px; line-height: 1.7;">${advancedMystery.solution.howCluesPointToCulprit}</p>
+                            
+                            <h4 style="color: #d4af37; margin-bottom: 15px;">🔬 Forensic Evidence:</h4>
+                            ${advancedMystery.solution.evidence.map(evidence => `
+                                <div class="deduction-step">• ${evidence}</div>
+                            `).join('')}
+                        </div>
+
+                        <div style="margin-top: 25px;">
+                            <h4 style="color: #4ecdc4; margin-bottom: 15px;">🎓 Educational Mastery Achieved:</h4>
+                            ${advancedMystery.educationalGoals.map(goal => `<p style="margin: 8px 0;">• ${goal}</p>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            mysteryContent.innerHTML = html;
+        }
+
+        function revealAdvancedClue(clueId) {
+            revealedClues.add(clueId);
+            const clueContent = document.getElementById(`clue-content-${clueId}`);
+            const revealButton = document.querySelector(`#clue-${clueId} .reveal-clue-btn`);
+            
+            clueContent.style.display = 'block';
+            revealButton.style.display = 'none';
+
+            updateAdvancedSuspectStatus();
+        }
+
+        function updateAdvancedSuspectStatus() {
+            const eliminatedSuspects = new Set();
+
+            advancedMystery.clues.forEach(clue => {
+                if (revealedClues.has(clue.id)) {
+                    if (clue.eliminatesWho) {
+                        clue.eliminatesWho.forEach(suspect => eliminatedSuspects.add(suspect));
+                    }
+                }
+            });
+
+            advancedMystery.suspects.forEach(suspect => {
+                const card = document.getElementById(`suspect-${suspect.id}`);
+                
+                if (eliminatedSuspects.has(suspect.name)) {
+                    card.classList.add('eliminated');
+                    card.classList.remove('culprit');
+                } else if (solutionRevealed && suspect.name === advancedMystery.solution.culprit) {
+                    card.classList.add('culprit');
+                    card.classList.remove('eliminated');
+                } else {
+                    card.classList.remove('eliminated', 'culprit');
+                }
+            });
+        }
+
+        function toggleAdvancedSolution() {
+            const solutionCard = document.getElementById('solutionCard');
+            const button = document.querySelector('.toggle-solution');
+            
+            solutionRevealed = !solutionRevealed;
+            
+            if (solutionRevealed) {
+                solutionCard.classList.remove('hidden');
+                button.textContent = '🙈 Hide Advanced Solution';
+            } else {
+                solutionCard.classList.add('hidden');
+                button.textContent = '🎯 Reveal Mastermind & Advanced Analysis';
+            }
+            
+            updateAdvancedSuspectStatus();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            displayAdvancedMystery();
+        });
+    </script>
+</body>
+</html>
+
+

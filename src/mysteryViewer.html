@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avalanche Mystery Viewer - Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e8e8e8;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            border: 2px solid #d4af37;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            color: #b8b8b8;
+        }
+
+        .mystery-card {
+            background: rgba(0,0,0,0.4);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #444;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .mystery-title {
+            font-size: 2em;
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ff6b6b;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .story-description {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #4ecdc4;
+            font-style: italic;
+            font-size: 1.1em;
+        }
+
+        .victim-card {
+            background: rgba(255,107,107,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .suspects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .suspect-card {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #4ecdc4;
+            transition: transform 0.3s ease;
+        }
+
+        .suspect-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(78,205,196,0.3);
+        }
+
+        .suspect-name {
+            font-size: 1.3em;
+            color: #4ecdc4;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .clues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 15px;
+        }
+
+        .clue-card {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ffa726;
+            position: relative;
+        }
+
+        .clue-rarity {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .rarity-common { background: #4caf50; }
+        .rarity-uncommon { background: #2196f3; }
+        .rarity-rare { background: #9c27b0; }
+        .rarity-legendary { background: #ff9800; }
+
+        .educational-links {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(212,175,55,0.1);
+            border-radius: 5px;
+            border-left: 3px solid #d4af37;
+        }
+
+        .link-badge {
+            display: inline-block;
+            background: #d4af37;
+            color: #1a1a2e;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin: 2px;
+            font-weight: bold;
+        }
+
+        .solution-card {
+            background: rgba(76,175,80,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #4caf50;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #444;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: #b8b8b8;
+            font-size: 0.9em;
+        }
+
+        .generate-btn {
+            background: linear-gradient(45deg, #d4af37, #ffd700);
+            color: #1a1a2e;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .generate-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .loading {
+            text-align: center;
+            color: #d4af37;
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+
+        .hidden { display: none; }
+
+        @media (max-width: 768px) {
+            .suspects-grid, .clues-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🕵️ Avalanche Mystery AI Viewer</h1>
+            <p>Experience Web3 education through engaging detective stories</p>
+            <button class="generate-btn" onclick="generateNewMystery()">
+                🎲 Generate New Mystery
+            </button>
+        </div>
+
+        <div id="loading" class="loading hidden">
+            <p>🔍 Generating your Avalanche mystery case... Please wait...</p>
+        </div>
+
+        <div id="mysteryContent" class="hidden">
+            <!-- Mystery content will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        // Sample mystery data - replace with actual API call
+        const sampleMystery = {
+            "mystery": {
+                "id": "defi_heist_1703123456789",
+                "title": "The Trader Joe Treasury Heist",
+                "shortDescription": "On a foggy evening in the digital realm of Avalanche, the Trader Joe protocol experiences a massive liquidity drain. 500,000 AVAX and 2.5 million USDC vanish from the treasury in what appears to be an inside job. The protocol's governance token JOE crashes 40% as panic spreads through the DeFi community. With millions at stake and the protocol's future hanging in the balance, detective work must uncover who had the knowledge and access to execute such a sophisticated heist.",
+                "victim": {
+                    "name": "Protocol Treasury",
+                    "age": 2,
+                    "background": "Automated DeFi protocol managing $50M in total value locked",
+                    "avaxRole": "Primary DEX and yield farming platform on Avalanche"
+                },
+                "suspects": [
+                    {
+                        "id": 1,
+                        "name": "Marina Chen",
+                        "age": 34,
+                        "background": "Senior DeFi strategist and yield farming expert",
+                        "possibleMotive": "Access to protocol treasury funds through governance exploit",
+                        "avaxConnection": "Major liquidity provider across multiple Avalanche protocols",
+                        "educationalLinks": []
+                    },
+                    {
+                        "id": 2,
+                        "name": "Dr. Robert Hayes",
+                        "age": 52,
+                        "background": "Blockchain security researcher and smart contract auditor",
+                        "possibleMotive": "Discovered a critical vulnerability and exploited it for personal gain",
+                        "avaxConnection": "Audited several major Avalanche protocols including Trader Joe",
+                        "educationalLinks": []
+                    }
+                ],
+                "clues": [],
+                "solution": {
+                    "culprit": "Marina Chen",
+                    "motive": "Governance token manipulation for treasury access",
+                    "explanation": "Marina used her large JOE holdings to propose and vote through a malicious governance proposal that gave her emergency withdrawal rights."
+                },
+                "educationalGoals": [
+                    "Understand how liquidity pools work",
+                    "Learn about yield farming strategies", 
+                    "Recognize governance attack vectors",
+                    "Identify smart contract vulnerabilities"
+                ],
+                "difficultyLevel": "beginner"
+            },
+            "sampleClues": [
+                {
+                    "id": "clue_1",
+                    "rarity": "common",
+                    "description": "Transaction logs show a large AVAX transfer of 50,000 tokens to address 0x742d35Cc4Bf3B3e82e0C7E0F4D3b8B5F2A1C8b9D at 11:47 PM",
+                    "avaxConcept": "AVAX token transfers and wallet addresses",
+                    "marketValue": 0.5,
+                    "educationalLinks": [
+                        {"term": "AVAX Token", "explanation": "Native currency of Avalanche network"}
+                    ]
+                },
+                {
+                    "id": "clue_2", 
+                    "rarity": "rare",
+                    "description": "Governance proposal #47 shows unusual voting patterns with 85% of votes coming from a single whale address in the final 2 hours",
+                    "avaxConcept": "DAO governance and voting mechanisms",
+                    "marketValue": 8.0,
+                    "educationalLinks": [
+                        {"term": "DAO Governance", "explanation": "Decentralized decision making through token voting"}
+                    ]
+                }
+            ]
+        };
+
+        function displayMystery(data) {
+            const mysteryContent = document.getElementById('mysteryContent');
+            
+            const html = `
+                <div class="mystery-card">
+                    <h2 class="mystery-title">${data.mystery.title}</h2>
+                    
+                    <div class="section">
+                        <div class="section-title">📖 Story Description</div>
+                        <div class="story-description">
+                            ${data.mystery.shortDescription}
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">💀 Victim</div>
+                        <div class="victim-card">
+                            <h3>${data.mystery.victim.name}</h3>
+                            <p><strong>Background:</strong> ${data.mystery.victim.background}</p>
+                            <p><strong>AVAX Role:</strong> ${data.mystery.victim.avaxRole}</p>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">🕵️ Suspects</div>
+                        <div class="suspects-grid">
+                            ${data.mystery.suspects.map(suspect => `
+                                <div class="suspect-card">
+                                    <div class="suspect-name">${suspect.name} (${suspect.age})</div>
+                                    <p><strong>Background:</strong> ${suspect.background}</p>
+                                    <p><strong>AVAX Connection:</strong> ${suspect.avaxConnection}</p>
+                                    <p><strong>Motive:</strong> ${suspect.possibleMotive}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">🔍 Sample Clues</div>
+                        <div class="clues-grid">
+                            ${data.sampleClues.map(clue => `
+                                <div class="clue-card">
+                                    <div class="clue-rarity rarity-${clue.rarity}">${clue.rarity}</div>
+                                    <p><strong>${clue.description}</strong></p>
+                                    <p><em>Teaches: ${clue.avaxConcept}</em></p>
+                                    <p>💰 Market Value: ${clue.marketValue} AVAX</p>
+                                    ${clue.educationalLinks.length > 0 ? `
+                                        <div class="educational-links">
+                                            <strong>📚 Learn:</strong>
+                                            ${clue.educationalLinks.map(link => 
+                                                `<span class="link-badge" title="${link.explanation}">${link.term}</span>`
+                                            ).join('')}
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">🏆 Solution</div>
+                        <div class="solution-card">
+                            <p><strong>Culprit:</strong> ${data.mystery.solution.culprit}</p>
+                            <p><strong>Motive:</strong> ${data.mystery.solution.motive}</p>
+                            <p><strong>Explanation:</strong> ${data.mystery.solution.explanation}</p>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">🎓 Educational Goals</div>
+                        <ul>
+                            ${data.mystery.educationalGoals.map(goal => `<li>${goal}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">📊 Mystery Stats</div>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number">${data.mystery.suspects.length}</div>
+                                <div class="stat-label">Suspects</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">${data.sampleClues.length}</div>
+                                <div class="stat-label">Sample Clues</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">${data.mystery.educationalGoals.length}</div>
+                                <div class="stat-label">Learning Goals</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">${data.mystery.difficultyLevel}</div>
+                                <div class="stat-label">Difficulty</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            mysteryContent.innerHTML = html;
+            mysteryContent.classList.remove('hidden');
+        }
+
+        function generateNewMystery() {
+            const loading = document.getElementById('loading');
+            const content = document.getElementById('mysteryContent');
+            
+            loading.classList.remove('hidden');
+            content.classList.add('hidden');
+            
+            // Simulate API call - replace with actual API
+            setTimeout(() => {
+                loading.classList.add('hidden');
+                displayMystery(sampleMystery);
+            }, 2000);
+        }
+
+        // Load initial mystery
+        document.addEventListener('DOMContentLoaded', () => {
+            displayMystery(sampleMystery);
+        });
+    </script>
+</body>
+</html>
+
+
