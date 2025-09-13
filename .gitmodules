@@ -1,0 +1,6 @@
+[submodule "blockie/lib/forge-std"]
+	path = blockie/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "blockie/lib/openzeppelin-contracts"]
+	path = blockie/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
